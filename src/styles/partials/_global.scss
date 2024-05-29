@@ -2,6 +2,7 @@
 /*                                  Partials                                  */
 /* -------------------------------------------------------------------------- */
 @use './fonts' as *;
+@use './color' as *;
 
 
 * {
@@ -13,4 +14,10 @@
 
 a {
     text-decoration: none;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $text-color-highlight;
 }

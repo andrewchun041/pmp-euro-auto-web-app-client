@@ -1,0 +1,10 @@
+@use '../../styles/partials/color' as *;
+
+.header{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: $background-color-lightdark;
+    &__logo-link{}
+    &__nav{}
+
+}
