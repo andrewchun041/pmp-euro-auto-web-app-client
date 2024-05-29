@@ -5,6 +5,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <Header />
         <Routes>
           {/* <Route path='/' element={< />}></Route> */}
           {/* <Route path='/' element={< />}></Route> */}
