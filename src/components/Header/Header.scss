@@ -1,11 +1,19 @@
 @use '../../styles/partials/color' as *;
-@use '../../styles/partials//responsive' as *;
+@use '../../styles/partials/responsive' as *;
 
 .header{
+    @include all-responsive-site-padding;
     padding-top: 1rem;
     padding-bottom: 1rem;
     background-color: $pmp-lightdark;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
     &__logo-link{}
     &__nav{}
+    &__navlink{
+        color: $text-color-light;
+        font-size: 1.25rem;
+    }
 
 }
