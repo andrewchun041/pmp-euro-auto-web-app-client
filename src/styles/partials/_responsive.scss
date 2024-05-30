@@ -26,7 +26,7 @@
     padding-right: $t-padding;
 }
 // Desktop site padding
-@mixin d-site-padding ($d-padding: 7rem) {
+@mixin d-site-padding ($d-padding: 5rem) {
     padding-left: $d-padding;
     padding-right: $d-padding;
 }

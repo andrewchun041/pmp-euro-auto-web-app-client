@@ -1,19 +1,63 @@
 @use '../../styles/partials/color' as *;
 @use '../../styles/partials/responsive' as *;
 
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $text-color-highlight;
+}
+.active {
+    color: $text-color-highlight;
+}
+
 .header{
+    // padding
     @include all-responsive-site-padding;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    $header-padding: 1rem;
+    padding-top: $header-padding;
+    padding-bottom: $header-padding;
+    // color
     background-color: $pmp-lightdark;
+    // flexbox
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    &__logo-link{}
-    &__nav{}
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+    &__logo-link{
+        white-space: nowrap;
+    }
+    &__nav{
+        // size
+        // width: 60%;
+        // width: 35rem;
+        // flexbox
+        // display: flex;
+        // justify-content: space-between;
+        // white-space: nowrap;
+    }
+    &__navlist{
+        @include tablet {
+            display: flex;
+            // flex-wrap: nowrap;
+        }
+    }
+    &__navlist-item{
+        text-align: center;
+        @include tablet {
+            margin-left: 0.75rem;
+        }
+    }
     &__navlink{
-        color: $text-color-light;
         font-size: 1.25rem;
+        color: $text-color-light;
+        &:hover{
+            color: $text-color-highlight;
+        }
     }
 
 }
