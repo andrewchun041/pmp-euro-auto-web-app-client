@@ -1,9 +1,10 @@
 @use '../../styles/partials/color' as *;
+@use '../../styles/partials//responsive' as *;
 
 .header{
     padding-top: 1rem;
     padding-bottom: 1rem;
-    background-color: $background-color-lightdark;
+    background-color: $pmp-lightdark;
     &__logo-link{}
     &__nav{}
 
