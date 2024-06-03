@@ -2,7 +2,52 @@
 @use '../../styles/partials/responsive' as *;
 
 .footer{
-    &__content-top{}
-    &__quick-links{}
-    &__content-bottom{}
+    &-one{
+        background-color: $pmp-lightdark;
+        text-align: center;
+        padding: 1rem 0;
+
+        &__block{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+        }
+        &__title{
+            color: $text-color-highlight;
+            margin-bottom: 0.5rem;
+        }
+        &__link-container{
+            display: inline-flex;
+            flex-direction: column;
+        }
+        &__navlink{
+            line-height: 1.25rem;
+            color: $text-color-light;
+            &:hover{
+                color: $text-color-highlight;
+            }
+        }
+    }
+    &-two{
+        background-color: $pmp-dark;
+        color: $text-color-light;
+        &__block{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &__socials-container{
+            margin: 3rem 0;
+            display: flex;
+            gap: 1.5rem;
+        }
+        &__copyright-container{
+            margin-bottom: 3rem;
+        }
+    }
+}
+
+.active {
+    color: $text-color-highlight;
 }
