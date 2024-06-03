@@ -1,15 +1,6 @@
 @use '../../styles/partials/color' as *;
 @use '../../styles/partials/responsive' as *;
 
-.logo {
-    font-size: 2rem;
-    font-weight: 600;
-    color: $text-color-highlight;
-}
-.active {
-    color: $text-color-highlight;
-}
-
 .header{
     // padding
     @include all-responsive-site-padding;
@@ -60,4 +51,8 @@
         }
     }
 
+}
+
+.active {
+    color: $text-color-highlight;
 }

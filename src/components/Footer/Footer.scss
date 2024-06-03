@@ -1,0 +1,8 @@
+@use '../../styles/partials/color' as *;
+@use '../../styles/partials/responsive' as *;
+
+.footer{
+    &__content-top{}
+    &__quick-links{}
+    &__content-bottom{}
+}
