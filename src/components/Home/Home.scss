@@ -1,7 +1,6 @@
 @use '../../styles/partials/color' as *;
 @use '../../styles/partials/responsive' as *;
 
-.home-section{}
 .hero-banner{
     &__background{
         background-image: url('../../assets/images/home-page-hero-banner.jpg');
@@ -17,6 +16,7 @@
     }
     &__slogan{
         color: $text-color-light;
+        font-size: 1.25rem;
     }
     &__title{
         // color: $text-color-highlight;
@@ -27,7 +27,24 @@
     &__description{
         color: $text-color-light;
         width: 50%;
-        font-size: 1.25rem;
+        font-size: 1.4rem;
         text-align: center;
+    }
+}
+.gallery{
+    @include all-responsive-site-padding;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+    &__title{
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+    &__img-container{
+        display: flex;  // fixes bottom empty space between img and container
+        background-color: $pmp-lightdark;
+        padding: 0.5rem;
     }
 }

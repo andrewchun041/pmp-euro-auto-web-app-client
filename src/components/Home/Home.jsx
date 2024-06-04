@@ -1,4 +1,5 @@
-import './Home.scss'
+import './Home.scss';
+import galleryImage from '../../assets/images/home-page-gallery-photo.jpeg';
 
 function Home() {
   return (
@@ -19,7 +20,10 @@ function Home() {
         </div>
       </section>
       <section className='gallery'>
-
+        <h2 className='gallery__title'>Gallery</h2>
+        <div className='gallery__img-container'>
+            <img className='gallery__img' src={galleryImage} alt="gallery photo" />
+        </div>
       </section>
     </>
   )
