@@ -1,15 +1,6 @@
 @use '../../styles/partials/color' as *;
 @use '../../styles/partials/responsive' as *;
 
-.logo {
-    font-size: 2rem;
-    font-weight: 600;
-    color: $text-color-highlight;
-}
-.active {
-    color: $text-color-highlight;
-}
-
 .header{
     // padding
     @include all-responsive-site-padding;
@@ -31,19 +22,9 @@
     &__logo-link{
         white-space: nowrap;
     }
-    &__nav{
-        // size
-        // width: 60%;
-        // width: 35rem;
-        // flexbox
-        // display: flex;
-        // justify-content: space-between;
-        // white-space: nowrap;
-    }
     &__navlist{
         @include tablet {
             display: flex;
-            // flex-wrap: nowrap;
         }
     }
     &__navlist-item{
@@ -60,4 +41,8 @@
         }
     }
 
+}
+
+.active {
+    color: $text-color-highlight;
 }

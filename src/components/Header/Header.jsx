@@ -16,27 +16,27 @@ function Header() {
             </NavLink>
           </li>
           <li className="header__navlist-item">
-            <NavLink className="header__navlink" to="/">
+            <NavLink className="header__navlink" to="/vehicles">
               Vehicles
             </NavLink>
           </li>
           <li className="header__navlist-item">
-            <NavLink className="header__navlink" to="/">
+            <NavLink className="header__navlink" to="/parts">
               Parts
             </NavLink>
           </li>
           <li className="header__navlist-item">
-            <NavLink className="header__navlink" to="/">
+            <NavLink className="header__navlink" to="https://www.ebay.ca/str/pmpeuroauto">
               eBay Store
             </NavLink>
           </li>
           <li className="header__navlist-item">
-            <NavLink className="header__navlink" to="/">
+            <NavLink className="header__navlink" to="/about">
               About
             </NavLink>
           </li>
           <li className="header__navlist-item">
-            <NavLink className="header__navlink" to="/">
+            <NavLink className="header__navlink" to="/contact">
               Contact
             </NavLink>
           </li>
