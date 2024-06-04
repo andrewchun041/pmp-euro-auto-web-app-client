@@ -2,12 +2,11 @@
 @use '../../styles/partials/responsive' as *;
 
 .footer{
-    background-color: $pmp-lightdark;
+    background-color: $pmp-mediumdark;
     display: flex;
     flex-direction: column;
     align-items: center;
     &-one{
-        padding: 1rem 0;
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -15,9 +14,11 @@
             flex-direction: row;
             justify-content: space-between;
             max-width: 800px;
+            $top-bot-padding: 3rem;
             $t-padding: 2.25rem;
-            padding-left: $t-padding;
-            padding-right: $t-padding;
+            // padding-left: $t-padding;
+            // padding-right: $t-padding;
+            padding: $top-bot-padding $t-padding;
         }
         &__block{
             display: flex;
@@ -41,7 +42,7 @@
         }
         &__title{
             color: $text-color-highlight;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
         &__link-container{
             display: inline-flex;
@@ -50,6 +51,9 @@
         &__link-wrapper{
             display: flex;
             justify-content: center;
+            // center depending on client preference
+            // align-items: flex-start;
+            align-items: center;
             &--block-one{
                 @include tablet {
                     justify-content: flex-start;
@@ -63,7 +67,7 @@
         }
         &__navlink{
             line-height: 1.25rem;
-            color: $text-color-light;
+            color: $text-color-dark;
             &:hover{
                 color: $text-color-highlight;
             }
@@ -71,7 +75,7 @@
     }
     &-two{
         background-color: $pmp-dark;
-        color: $text-color-light;
+        color: $text-color-dark;
         width: 100%;
         &__block{
             display: flex;
@@ -79,12 +83,15 @@
             align-items: center;
         }
         &__socials-container{
-            margin: 3rem 0;
+            margin: 2rem 0;
             display: flex;
             gap: 1.5rem;
         }
         &__copyright-container{
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
+            @include tablet {
+                margin-bottom: 3rem;
+            }
         }
     }
 }
