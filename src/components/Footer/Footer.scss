@@ -2,16 +2,42 @@
 @use '../../styles/partials/responsive' as *;
 
 .footer{
+    background-color: $pmp-lightdark;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     &-one{
-        background-color: $pmp-lightdark;
-        text-align: center;
         padding: 1rem 0;
-
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        @include tablet {
+            flex-direction: row;
+            justify-content: space-between;
+            max-width: 800px;
+            $t-padding: 2.25rem;
+            padding-left: $t-padding;
+            padding-right: $t-padding;
+        }
         &__block{
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 2rem 0;
+            @include tablet {
+                padding: 0;
+                width: 10rem;
+            }
+            &--one{
+                @include tablet {
+                    align-items: start;
+                }
+            }
+            &--two{
+                @include tablet {
+                    align-items: end;
+                }
+            }
         }
         &__title{
             color: $text-color-highlight;
@@ -20,6 +46,20 @@
         &__link-container{
             display: inline-flex;
             flex-direction: column;
+        }
+        &__link-wrapper{
+            display: flex;
+            justify-content: center;
+            &--block-one{
+                @include tablet {
+                    justify-content: flex-start;
+                }
+            }
+            &--block-two{
+                @include tablet {
+                    justify-content: flex-end;
+                }
+            }
         }
         &__navlink{
             line-height: 1.25rem;
@@ -32,6 +72,7 @@
     &-two{
         background-color: $pmp-dark;
         color: $text-color-light;
+        width: 100%;
         &__block{
             display: flex;
             justify-content: center;
