@@ -22,19 +22,9 @@
     &__logo-link{
         white-space: nowrap;
     }
-    &__nav{
-        // size
-        // width: 60%;
-        // width: 35rem;
-        // flexbox
-        // display: flex;
-        // justify-content: space-between;
-        // white-space: nowrap;
-    }
     &__navlist{
         @include tablet {
             display: flex;
-            // flex-wrap: nowrap;
         }
     }
     &__navlist-item{
