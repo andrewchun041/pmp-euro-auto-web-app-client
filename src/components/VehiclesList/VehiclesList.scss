@@ -31,18 +31,18 @@
         }
     }
 }
-.vehicles{
+.vehicles-interface{
     display: flex;
     flex-direction: column;
     padding: 2rem 0;
     border-bottom: 1px solid $pmp-lightdark;
-    &__interface{
+    &__container{
         @include all-responsive-site-padding;
     }
     &__search-input{
         width: 100%;
         @include tablet {
-            width: 30%;
+            width: 25rem;
         }
     }
     &__filter-sort-num-prod-container{
