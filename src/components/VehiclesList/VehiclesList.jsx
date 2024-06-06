@@ -1,5 +1,7 @@
 import './VehiclesList.scss'
 
+import carExample from '../../assets/images/home-page-gallery-photo.jpeg'
+
 function VehiclesList() {
   return (
     <>
@@ -42,8 +44,20 @@ function VehiclesList() {
                 </div>
             </div>
         </section>
-        <section className="">
-            <article></article>
+        <section className="vehicles-list">
+            <div className="vehicles-list__container">
+                <ul className="vehicles-list__list">
+                    <li className="vehicles-list__item">
+                        <article className="vehicle-card">
+                            <img className="vehicle-card__img" src={carExample} alt="Car" />
+                            {/* to replace once data is available */}
+                            {/* <img className="vehicle-card__img" src={car.img} alt={car.name} /> */}
+                            <h2 className="vehicle-card__name">car 1</h2>
+                            <p className="vehicle-card__posted-date">posted date</p>
+                        </article>
+                    </li>
+                </ul>
+            </div>
         </section>
     </>
   );
