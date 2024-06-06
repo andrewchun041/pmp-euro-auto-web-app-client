@@ -1,0 +1,98 @@
+@use '../../styles/partials/color' as *;
+@use '../../styles/partials/responsive' as *;
+
+.vehicles-hero-banner{
+    &__background{
+        background-image: url('../../assets/images/car-page-banner.jpg');
+        background-size: cover;
+        background-position-x: center;
+        background-position-y: 76%;
+        height: 50vw;
+        @include tablet {
+            background-position-y: 73%;
+            height: 30vw;
+        }
+    }
+    &__text-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb($pmp-dark, 0.5);
+        height: 100%;
+    }
+    &__title{
+        // color: $text-color-highlight;
+        color: $text-color-light;
+        // color: red;
+        font-size: 2.5rem;
+        @include tablet {
+            font-size: 3.5rem;
+        }
+    }
+}
+.vehicles{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    border-bottom: 1px solid $pmp-lightdark;
+    &__interface{
+        @include all-responsive-site-padding;
+    }
+    &__search-input{
+        width: 100%;
+        @include tablet {
+            width: 30%;
+        }
+    }
+    &__filter-sort-num-prod-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-top: 1rem;
+    }
+    &__filter-sort-container{
+        display: flex;
+        gap: 1rem;
+        @include tablet {
+            position: relative;
+        }
+    }
+    &__filter-fieldset{
+        border: none;
+        @include tablet {
+            position: relative;
+        }
+    }
+    &__filter-legend{}
+    &__filter-select-container{
+        display: flex;
+        gap: 0.5rem;
+        @include tablet {
+            position: absolute;
+            top: -1.44rem;
+            left: calc(38.32px + 0.5rem);
+        }
+    }
+    &__filter-select{}
+    &__filter-option{}
+    &__sort-container{
+        display: flex;
+        flex-direction: column;
+        @include tablet {
+            flex-direction: row;
+            align-items: baseline;
+            gap: 0.5rem;
+            position: absolute;
+            // left: 11.5rem;
+            left: 15rem;
+        }
+    }
+    &__sort-label{}
+    &__sort-select{}
+    &__sort-option{}
+    
+
+
+}

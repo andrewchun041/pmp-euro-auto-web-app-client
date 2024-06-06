@@ -18,6 +18,17 @@ a {
 li {
     list-style: none;
 }
+input {
+    height: 2rem;
+    border-radius: 1rem;
+    border: 1px solid $pmp-dark;
+    padding: 0 2rem 0 1rem;
+    // kept for later use (to delete if not needed)
+    // &:focus{
+        // outline: none;
+        // border: 1px solid $text-color-highlight;
+    // }
+}
 
 .logo {
     font-size: 2rem;
