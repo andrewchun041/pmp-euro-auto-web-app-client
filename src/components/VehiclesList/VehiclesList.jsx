@@ -35,6 +35,7 @@ const vehicleModelList = [
 function VehiclesList() {
 
     const [ cars, setCars ] = useState([]);
+    const [ selectedMake, setSelectedMake ] = useState("all");
     
     // get cars data from server
     useEffect(() => {
@@ -50,6 +51,11 @@ function VehiclesList() {
         }
         getCars();
     }, []);
+
+    // handle 'make' select change
+    const handleMakeChange = (event) => {
+        setSelectedMake(event.target.value);
+    }
 
   return (
     <>
@@ -68,7 +74,13 @@ function VehiclesList() {
                         <fieldset className="vehicles-interface__filter-fieldset">
                             <legend className="vehicles-interface__filter-legend">Filter:</legend>
                             <div className="vehicles-interface__filter-select-container">
-                                <select className="vehicles-interface__filter-select" name="make" id="make">
+                                <select 
+                                    className="vehicles-interface__filter-select" 
+                                    name="make" 
+                                    id="make"
+                                    value={selectedMake}
+                                    onChange={handleMakeChange}
+                                >
                                     <option className="vehicles-interface__filter-option" value="all">Make</option>
                                     {vehicleMakeList.map((make) => (
                                         <option className="vehicles-interface__filter-option" value={make}>{`${make}`}</option>
