@@ -7,6 +7,31 @@ import VehicleCard from '../VehicleCard/VehicleCard';
 
 const baseUrl = "http://localhost:8080";
 
+const vehicleMakeList = [
+    "Toyota",
+    "Honda",
+    "Ford",
+    "Chavrolet",
+    "Nissan",
+    "BMW",
+    "Audi",
+    "Mercedes",
+    "Volkswagen",
+    "Hyundai",
+]
+const vehicleModelList = [
+    "Corolla",
+    "Civic",
+    "Focus",
+    "Malibu",
+    "Sentra",
+    "BMW",
+    "Audi",
+    "C-Class",
+    "Passat",
+    "Elantra",
+]
+
 function VehiclesList() {
 
     const [ cars, setCars ] = useState([]);
