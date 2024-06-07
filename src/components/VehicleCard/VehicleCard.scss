@@ -1,0 +1,21 @@
+@use '../../styles/partials/color' as *;
+@use '../../styles/partials/responsive' as *;
+
+.vehicle-card{
+    display: flex;
+    flex-direction: column;
+    &__img{}
+    &__name{
+        font-size: 0.9rem;
+        @include tablet {
+            font-size: 1.1rem;
+        }
+    }
+    &__posted-date{
+        font-size: 0.75rem;
+        @include tablet {
+            font-size: 0.85rem;
+        }
+    }
+
+}

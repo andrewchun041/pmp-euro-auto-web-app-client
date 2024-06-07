@@ -1,8 +1,31 @@
-import './VehiclesList.scss'
+import './VehiclesList.scss';
 
-import carExample from '../../assets/images/home-page-gallery-photo.jpeg'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import VehicleCard from '../VehicleCard/VehicleCard';
+
+const baseUrl = "http://localhost:8080";
 
 function VehiclesList() {
+
+    const [ cars, setCars ] = useState([]);
+    
+    // get cars data from server
+    useEffect(() => {
+        const getCars = async () => {
+            try {
+                const response = await axios.get(
+                    `${baseUrl}/cars`
+                );
+                setCars(response.data);
+            } catch (error) {
+                console.error("Error fetching cars data: ", error)
+            }
+        }
+        getCars();
+    }, []);
+
   return (
     <>
         <section className="vehicles-hero-banner">
@@ -14,7 +37,7 @@ function VehiclesList() {
         </section>
         <section className="vehicles-interface">
             <div className="vehicles-interface__container">
-                <input className="vehicles-interface__search-input" type="search" />
+                <input className="vehicles-interface__search-input" type="search" placeholder="Search" />
                 <div className="vehicles-interface__filter-sort-num-prod-container">
                     <div className="vehicles-interface__filter-sort-container">
                         <fieldset className="vehicles-interface__filter-fieldset">
@@ -39,7 +62,7 @@ function VehiclesList() {
                         </div>
                     </div>
                     <div className="vehicles-interface__num-prod-container">
-                        <p className="vehicles-interface__num-prod-text"># products</p>
+                        <p className="vehicles-interface__num-prod-text">{cars.length} products</p>
                     </div>
                 </div>
             </div>
@@ -47,15 +70,13 @@ function VehiclesList() {
         <section className="vehicles-list">
             <div className="vehicles-list__container">
                 <ul className="vehicles-list__list">
-                    <li className="vehicles-list__item">
-                        <article className="vehicle-card">
-                            <img className="vehicle-card__img" src={carExample} alt="Car" />
-                            {/* to replace once data is available */}
-                            {/* <img className="vehicle-card__img" src={car.img} alt={car.name} /> */}
-                            <h2 className="vehicle-card__name">car 1</h2>
-                            <p className="vehicle-card__posted-date">posted date</p>
-                        </article>
-                    </li>
+                    {cars?.map((car) => (
+                        <li className="vehicles-list__item"
+                            key={car.id}
+                        >
+                            <VehicleCard car={car} />
+                        </li>
+                    ))}
                 </ul>
             </div>
         </section>

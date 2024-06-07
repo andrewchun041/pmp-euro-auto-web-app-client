@@ -93,6 +93,10 @@
     &__sort-label{}
     &__sort-select{}
     &__sort-option{}
+    &__num-prod-container{}
+    &__num-prod-text{
+        font-style: italic;
+    }
 }
 .vehicles-list{
     display: flex;
@@ -101,21 +105,20 @@
     border-bottom: 1px solid $pmp-lightdark;
     &__container{
         @include all-responsive-site-padding;
+    }
+    &__list{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: 1rem;
+        @include tablet {
+            gap: 2rem;
+        }
     }
-    &__list{}
     &__item{
-        width: 50%;
+        width: calc(50% - 0.5rem);
+        @include tablet {
+            width: calc(25% - 1.5rem);
+        }
     }
-}
-.vehicle-card{
-    display: flex;
-    flex-direction: column;
-    &__img{}
-    &__name{}
-    &__posted-date{}
-
 }
