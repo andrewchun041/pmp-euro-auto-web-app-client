@@ -60,7 +60,17 @@ function VehicleDetails() {
         </div>
       </section>
       <section className="vehicle-parts-list">
-
+        <div className="vehicle-parts-list__container">
+            <ul className="vehicle-parts-list__list">
+                {/* {cars?.map((car) => ( */}
+                    <li className="vehicle-parts-list__item"
+                        // key={car.id}
+                    >
+                        {/* <VehicleCard car={car} /> */}
+                    </li>
+                {/* ))} */}
+            </ul>
+        </div>
       </section>
     </>
   );

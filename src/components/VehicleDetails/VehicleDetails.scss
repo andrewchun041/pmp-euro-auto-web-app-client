@@ -103,5 +103,26 @@
     }
 }
 .vehicle-parts-list{
-
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    border-bottom: 1px solid $pmp-lightdark;
+    &__container{
+        @include all-responsive-site-padding;
+    }
+    &__list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        @include tablet {
+            gap: 2rem;
+        }
+    }
+    &__item{
+        width: calc(50% - 0.5rem);
+        @include tablet {
+            width: calc(25% - 1.5rem);
+        }
+    }
 }
