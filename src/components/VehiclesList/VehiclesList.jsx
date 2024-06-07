@@ -70,6 +70,9 @@ function VehiclesList() {
                             <div className="vehicles-interface__filter-select-container">
                                 <select className="vehicles-interface__filter-select" name="make" id="make">
                                     <option className="vehicles-interface__filter-option" value="all">Make</option>
+                                    {vehicleMakeList.map((make) => (
+                                        <option className="vehicles-interface__filter-option" value={make}>{`${make}`}</option>
+                                    ))}
                                 </select>
                                 <select className="vehicles-interface__filter-select" name="model" id="model">
                                     <option className="vehicles-interface__filter-option" value="all">Model</option>
