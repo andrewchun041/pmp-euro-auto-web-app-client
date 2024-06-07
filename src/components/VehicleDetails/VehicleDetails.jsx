@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import VehiclePartCard from '../VehiclePartCard/VehiclePartCard';
+
 const baseUrl = "http://localhost:8080";
 
 function formatDate (date) {
@@ -20,9 +22,10 @@ function VehicleDetails() {
     const params = useParams();
 
     const [ car, setCar ] = useState({});
+    const [ parts, setParts ] = useState([]);
     
-    // get car data from server
     useEffect(() => {
+        // get car data from server api
         const getCar = async () => {
             try {
                 const response = await axios.get(
@@ -34,8 +37,20 @@ function VehicleDetails() {
             }
         }
         getCar();
-    }, []);
-    
+        // get parts data of the car from server api
+        const getParts = async () => {
+            try {
+                const response = await axios.get(
+                    `${baseUrl}/cars/${params.id}/parts`
+                );
+                setParts(response.data);
+            } catch (error) {
+                console.error("Error fetching car data: ", error)
+            }
+        }
+        getParts();
+    }, [params.id]);
+
   return (
     <>
       <section className="vehicle-details">
@@ -65,11 +80,11 @@ function VehicleDetails() {
                     <fieldset className="vehicle-parts-interface__filter-fieldset">
                         <legend className="vehicle-parts-interface__filter-legend">Filter:</legend>
                         <div className="vehicle-parts-interface__filter-select-container">
-                            <select className="vehicle-parts-interface__filter-select" name="make" id="make">
-                                <option className="vehicle-parts-interface__filter-option" value="all">Make</option>
+                            <select className="vehicle-parts-interface__filter-select" name="part" id="part">
+                                <option className="vehicle-parts-interface__filter-option" value="all">Part</option>
                             </select>
-                            <select className="vehicle-parts-interface__filter-select" name="model" id="model">
-                                <option className="vehicle-parts-interface__filter-option" value="all">Model</option>
+                            <select className="vehicle-parts-interface__filter-select" name="price" id="price">
+                                <option className="vehicle-parts-interface__filter-option" value="all">Price</option>
                             </select>
                         </div>
                     </fieldset>
@@ -92,13 +107,13 @@ function VehicleDetails() {
       <section className="vehicle-parts-list">
         <div className="vehicle-parts-list__container">
             <ul className="vehicle-parts-list__list">
-                {/* {cars?.map((car) => ( */}
+                {parts?.map((part) => (
                     <li className="vehicle-parts-list__item"
-                        // key={car.id}
+                        key={part.id}
                     >
-                        {/* <VehicleCard car={car} /> */}
+                        <VehiclePartCard part={part} />
                     </li>
-                {/* ))} */}
+                ))}
             </ul>
         </div>
       </section>
