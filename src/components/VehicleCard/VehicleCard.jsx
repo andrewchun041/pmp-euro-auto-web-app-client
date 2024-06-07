@@ -16,7 +16,7 @@ function VehicleCard({ car }) {
 
   return (
     <article className="vehicle-card">
-      <Link className="vehicle-card__link" to={`/cars/${car.id}`}>
+      <Link className="vehicle-card__link" to={`/vehicles/${car.id}`}>
         <img className="vehicle-card__img" src={carExample} alt="Car" />
         {/* to replace once data is available */}
         {/* <img className="vehicle-card__img" src={car.img} alt={car.name} /> */}
