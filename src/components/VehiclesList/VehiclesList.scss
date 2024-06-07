@@ -66,7 +66,6 @@
             position: relative;
         }
     }
-    &__filter-legend{}
     &__filter-select-container{
         display: flex;
         gap: 0.5rem;
@@ -76,8 +75,6 @@
             left: calc(38.32px + 0.5rem);
         }
     }
-    &__filter-select{}
-    &__filter-option{}
     &__sort-container{
         display: flex;
         flex-direction: column;
@@ -90,12 +87,9 @@
             left: 15rem;
         }
     }
-    &__sort-label{}
-    &__sort-select{}
-    &__sort-option{}
-    &__num-prod-container{}
     &__num-prod-text{
         font-style: italic;
+        font-size: 0.9rem;
     }
 }
 .vehicles-list{

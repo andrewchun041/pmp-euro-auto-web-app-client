@@ -4,7 +4,6 @@
 .vehicle-card{
     display: flex;
     flex-direction: column;
-    &__img{}
     &__name{
         font-size: 0.9rem;
         @include tablet {
