@@ -11,11 +11,11 @@ const vehicleMakeList = [
     "Toyota",
     "Honda",
     "Ford",
-    "Chavrolet",
+    "Chevrolet",
     "Nissan",
     "BMW",
     "Audi",
-    "Mercedes",
+    "Mercedes-Benz",
     "Volkswagen",
     "Hyundai",
 ]
@@ -37,7 +37,9 @@ function VehiclesList() {
     const [ cars, setCars ] = useState([]);
     const [ selectedMake, setSelectedMake ] = useState("all");
     
-    // get cars data from server
+    /* -------------------------------------------------------------------------- */
+    /*                          Get cars data from server                         */
+    /* -------------------------------------------------------------------------- */
     useEffect(() => {
         const getCars = async () => {
             try {
@@ -52,10 +54,15 @@ function VehiclesList() {
         getCars();
     }, []);
 
+    /* -------------------------------------------------------------------------- */
+    /*                                   Filters                                  */
+    /* -------------------------------------------------------------------------- */
     // handle 'make' select change
     const handleMakeChange = (event) => {
         setSelectedMake(event.target.value);
     }
+    // Filter cars based on selected make
+    const makeFilteredCars = selectedMake === "all" ? cars : cars.filter(car => car.make === selectedMake);
 
   return (
     <>
@@ -110,13 +117,16 @@ function VehiclesList() {
         <section className="vehicles-list">
             <div className="vehicles-list__container">
                 <ul className="vehicles-list__list">
-                    {cars?.map((car) => (
-                        <li className="vehicles-list__item"
-                            key={car.id}
-                        >
-                            <VehicleCard car={car} />
-                        </li>
-                    ))}
+                    {makeFilteredCars
+                    // (selectedMake === "all" ? cars : cars.filter(car => car.make === selectedMake))
+                        .map((car) => (
+                            <li className="vehicles-list__item"
+                                key={car.id}
+                            >
+                                <VehicleCard car={car} />
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
         </section>
