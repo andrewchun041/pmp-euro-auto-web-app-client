@@ -1,0 +1,128 @@
+@use '../../styles/partials/color' as *;
+@use '../../styles/partials/responsive' as *;
+
+.vehicle-details{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    @include tablet {
+        padding: 2rem 0;
+    }
+    &__container{
+        @include all-responsive-site-padding;
+        display: flex;
+        flex-direction: column;
+        @include tablet {
+            flex-direction: row;
+        }
+    }
+    &__car-img-container{
+        @include tablet {
+            width: 50%;
+            // margin: 0.5rem;
+        }
+    }
+    &__car-img{
+        display: flex;
+        width: 100%;
+    }
+    &__car-info-container{
+        margin-top: 1rem;
+        @include tablet {
+            margin-top: 0;
+            // margin: 0.5rem;
+            margin-left: 2rem;
+            width: 50%;
+        }
+    }
+    &__car-name{
+        margin-bottom: 1rem;
+    }
+    &__car-details-container{}
+    &__car-details-text{}
+}
+.vehicle-parts-interface{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0 1rem 0;
+    border-top: 1px solid $text-color-dark;
+    border-bottom: 1px solid $text-color-dark;
+    &__container{
+        @include all-responsive-site-padding;
+    }
+    &__search-input{
+        width: 100%;
+        @include tablet {
+            width: 25rem;
+        }
+    }
+    &__filter-sort-num-prod-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-top: 1rem;
+    }
+    &__filter-sort-container{
+        display: flex;
+        gap: 1rem;
+        @include tablet {
+            position: relative;
+        }
+    }
+    &__filter-fieldset{
+        border: none;
+        @include tablet {
+            position: relative;
+        }
+    }
+    &__filter-select-container{
+        display: flex;
+        gap: 0.5rem;
+        @include tablet {
+            position: absolute;
+            top: -1.44rem;
+            left: calc(38.32px + 0.5rem);
+        }
+    }
+    &__sort-container{
+        display: flex;
+        flex-direction: column;
+        @include tablet {
+            flex-direction: row;
+            align-items: baseline;
+            gap: 0.5rem;
+            position: absolute;
+            // left: 11.5rem;
+            left: 15rem;
+        }
+    }
+    &__num-prod-text{
+        font-style: italic;
+        font-size: 0.9rem;
+    }
+}
+.vehicle-parts-list{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    border-bottom: 1px solid $pmp-lightdark;
+    &__container{
+        @include all-responsive-site-padding;
+    }
+    &__list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        @include tablet {
+            gap: 2rem;
+        }
+    }
+    &__item{
+        width: calc(50% - 0.5rem);
+        @include tablet {
+            width: calc(25% - 1.5rem);
+        }
+    }
+}

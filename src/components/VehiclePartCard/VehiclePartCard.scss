@@ -1,0 +1,26 @@
+@use '../../styles/partials/color' as *;
+@use '../../styles/partials/responsive' as *;
+
+.vehicle-part-card{
+    &__link{
+        display: flex;
+        flex-direction: column;
+        color: black;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    &__name{
+        font-size: 0.9rem;
+        @include tablet {
+            font-size: 0.95rem;
+        }
+    }
+    &__price{
+        font-size: 0.95rem;
+        @include tablet {
+            font-size: 1rem;
+        }
+    }
+
+}
