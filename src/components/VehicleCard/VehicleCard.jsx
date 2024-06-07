@@ -1,6 +1,7 @@
 import './VehicleCard.scss';
-
 import carExample from '../../assets/images/home-page-gallery-photo.jpeg';
+
+import { Link } from "react-router-dom";
 
 function VehicleCard({ car }) {
   
@@ -13,14 +14,15 @@ function VehicleCard({ car }) {
     return formattedDate;
   }
 
-
   return (
     <article className="vehicle-card">
+      <Link className="vehicle-card__link" to={`/cars/${car.id}`}>
         <img className="vehicle-card__img" src={carExample} alt="Car" />
         {/* to replace once data is available */}
         {/* <img className="vehicle-card__img" src={car.img} alt={car.name} /> */}
         <h2 className="vehicle-card__name">{`${car.year} ${car.make} ${car.model}`}</h2>
         <p className="vehicle-card__posted-date">{formatDate(car.created_at)}</p>
+      </Link>
     </article>
   );
 }

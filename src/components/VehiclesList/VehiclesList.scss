@@ -34,7 +34,7 @@
 .vehicles-interface{
     display: flex;
     flex-direction: column;
-    padding: 2rem 0;
+    padding: 2rem 0 1rem 0;
     border-bottom: 1px solid $text-color-dark;
     // border-top: 1px solid $text-color-dark;
     &__container{
