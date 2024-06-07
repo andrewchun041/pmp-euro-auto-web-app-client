@@ -2,9 +2,39 @@ import './VehicleDetails.scss';
 import carExample from '../../assets/images/home-page-gallery-photo.jpeg';
 
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const baseUrl = "http://localhost:8080";
+
+function formatDate (date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    // convert ISO String to date object
+    const dateObject = new Date(date);
+    // format the date object
+    const formattedDate = dateObject.toLocaleDateString('en-US', options);
+    return formattedDate;
+}
 
 function VehicleDetails() {
     const params = useParams();
+
+    const [ car, setCar ] = useState({});
+    
+    // get car data from server
+    useEffect(() => {
+        const getCar = async () => {
+            try {
+                const response = await axios.get(
+                    `${baseUrl}/cars/${params.id}`
+                );
+                setCar(response.data);
+            } catch (error) {
+                console.error("Error fetching car data: ", error)
+            }
+        }
+        getCar();
+    }, []);
     
   return (
     <>
@@ -16,13 +46,13 @@ function VehicleDetails() {
                 {/* <img className="vehicle-details__car-img" src={carExample} alt={car.name} /> */}
             </div>
             <div className="vehicle-details__car-info-container">
-                <h1 className="vehicle-details__car-name">make model (year)</h1>
+                <h1 className="vehicle-details__car-name">{`${car.make} ${car.model} (${car.year})`}</h1>
                 <div className="vehicle-details__car-details-container">
-                    <p className="vehicle-details__car-details-text">VIN: vin</p>
-                    <p className="vehicle-details__car-details-text">Stock #: stock</p>
-                    <p className="vehicle-details__car-details-text">Mileage (kms): kms</p>
-                    <p className="vehicle-details__car-details-text">Mileage (miles): miles</p>
-                    <p className="vehicle-details__car-details-text">Posted Date: date</p>
+                    <p className="vehicle-details__car-details-text">{`VIN: ${car.vin}`}</p>
+                    <p className="vehicle-details__car-details-text">{`Stock #: ${car.car_stock}`}</p>
+                    <p className="vehicle-details__car-details-text">{`Mileage (kms): ${car.mileage_kms}`}</p>
+                    <p className="vehicle-details__car-details-text">{`Mileage (miles): ${car.mileage_miles}`}</p>
+                    <p className="vehicle-details__car-details-text">{`Posted Date: ${formatDate(car.created_at)}`}</p>
                 </div>
             </div>
         </div>
@@ -54,7 +84,7 @@ function VehicleDetails() {
                     </div>
                 </div>
                 <div className="vehicle-parts-interface__num-prod-container">
-                    <p className="vehicle-parts-interface__num-prod-text"># products</p>
+                    <p className="vehicle-parts-interface__num-prod-text">{`${car.number_of_parts} products`}</p>
                 </div>
             </div>
         </div>
