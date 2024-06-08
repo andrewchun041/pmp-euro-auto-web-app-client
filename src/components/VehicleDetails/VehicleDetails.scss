@@ -38,8 +38,6 @@
     &__car-name{
         margin-bottom: 1rem;
     }
-    &__car-details-container{}
-    &__car-details-text{}
 }
 .vehicle-parts-interface{
     display: flex;
@@ -93,8 +91,7 @@
             align-items: baseline;
             gap: 0.5rem;
             position: absolute;
-            // left: 11.5rem;
-            left: 15rem;
+            left: 17rem;
         }
     }
     &__num-prod-text{

@@ -7,35 +7,12 @@ import VehicleCard from '../VehicleCard/VehicleCard';
 
 const baseUrl = "http://localhost:8080";
 
-const vehicleMakeList = [
-    "Toyota",
-    "Honda",
-    "Ford",
-    "Chevrolet",
-    "Nissan",
-    "BMW",
-    "Audi",
-    "Mercedes-Benz",
-    "Volkswagen",
-    "Hyundai",
-]
-const vehicleModelList = [
-    "Corolla",
-    "Civic",
-    "Focus",
-    "Malibu",
-    "Sentra",
-    "BMW",
-    "Audi",
-    "C-Class",
-    "Passat",
-    "Elantra",
-]
-
 function VehiclesList() {
 
     const [ cars, setCars ] = useState([]);
     // const [ sortedCars, setSortedCars ] = useState([]);
+    const [ vehicleMakeList, setVehicleMakeList ] = useState([]);
+    const [ vehicleModelList, setVehicleModelList ] = useState([]);
     const [ selectedMake, setSelectedMake ] = useState("all-make");
     const [ selectedModel, setSelectedModel ] = useState("all-model");
     
@@ -48,7 +25,20 @@ function VehiclesList() {
                 const response = await axios.get(
                     `${baseUrl}/cars`
                 );
+                // sets and saves the cars data
                 setCars(response.data);
+                
+                // create set object variables to hold unique values
+                const makes = new Set();
+                const models = new Set();
+                // extract unique makes and models from fetched cars data
+                response.data.forEach(car => {
+                    makes.add(car.make);
+                    models.add(car.model);
+                });
+                // convert makes and models set objects to arrays and store in useState variables
+                setVehicleMakeList([...makes]);
+                setVehicleModelList([...models]);
             } catch (error) {
                 console.error("Error fetching cars data: ", error)
             }
