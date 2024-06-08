@@ -35,8 +35,9 @@ const vehicleModelList = [
 function VehiclesList() {
 
     const [ cars, setCars ] = useState([]);
-    const [ selectedMake, setSelectedMake ] = useState("all");
-    const [ selectedModel, setSelectedModel ] = useState("all");
+    // const [ sortedCars, setSortedCars ] = useState([]);
+    const [ selectedMake, setSelectedMake ] = useState("all-make");
+    const [ selectedModel, setSelectedModel ] = useState("all-model");
     
     /* -------------------------------------------------------------------------- */
     /*                          Get cars data from server                         */
@@ -67,9 +68,15 @@ function VehiclesList() {
         setSelectedModel(event.target.value);
     }
     // Filter cars based on 'make' selected
-    const makeFilteredCars = selectedMake === "all-make" ? cars : cars.filter(car => car.make === selectedMake);
+    const makeFilteredCars =
+      selectedMake === "all-make"
+        ? cars
+        : cars.filter((car) => car.make === selectedMake);
     // Filter cars based on 'model' selected
-    const makeAndModelFilteredCars = selectedModel === "all-model" ? makeFilteredCars : makeFilteredCars.filter(car => car.model === selectedModel);
+    const makeAndModelFilteredCars =
+      selectedModel === "all-model"
+        ? makeFilteredCars
+        : makeFilteredCars.filter((car) => car.model === selectedModel);
 
   return (
     <>
@@ -97,7 +104,7 @@ function VehiclesList() {
                                 >
                                     <option className="vehicles-interface__filter-option" value="all-make">All Make</option>
                                     {vehicleMakeList.map((make) => (
-                                        <option className="vehicles-interface__filter-option" value={make}>{`${make}`}</option>
+                                        <option className="vehicles-interface__filter-option" value={make} key={make}>{`${make}`}</option>
                                     ))}
                                 </select>
                                 <select 
@@ -109,7 +116,7 @@ function VehiclesList() {
                                 >
                                     <option className="vehicles-interface__filter-option" value="all-model">All Model</option>
                                     {vehicleModelList.map((model) => (
-                                        <option className="vehicles-interface__filter-option" value={model}>{`${model}`}</option>
+                                        <option className="vehicles-interface__filter-option" value={model} key={model}>{`${model}`}</option>
                                     ))}
                                 </select>
                             </div>
@@ -134,7 +141,6 @@ function VehiclesList() {
             <div className="vehicles-list__container">
                 <ul className="vehicles-list__list">
                     {makeAndModelFilteredCars
-                    // (selectedMake === "all" ? cars : cars.filter(car => car.make === selectedMake))
                         .map((car) => (
                             <li className="vehicles-list__item"
                                 key={car.id}
