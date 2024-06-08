@@ -23,7 +23,12 @@ function VehicleDetails() {
 
     const [ car, setCar ] = useState({});
     const [ parts, setParts ] = useState([]);
+    const [ partsList, setPartsList ] = useState([]);
+    const [ selectedPart, setSelectedPart ] = useState("all-parts")
     
+    /* -------------------------------------------------------------------------- */
+    /*       Get specific car data and associated parts data from server API      */
+    /* -------------------------------------------------------------------------- */
     useEffect(() => {
         // get car data from server api
         const getCar = async () => {
@@ -44,12 +49,34 @@ function VehicleDetails() {
                     `${baseUrl}/cars/${params.id}/parts`
                 );
                 setParts(response.data);
+
+                // create set object variable to hold unique values
+                const partsSet = new Set();
+                // extract unique parts from fetched parts data
+                response.data.forEach(part => {
+                    partsSet.add(part.part_name);
+                });
+                // convert partSet object to an array and store in useState
+                setPartsList([...partsSet])
             } catch (error) {
                 console.error("Error fetching car data: ", error)
             }
         }
         getParts();
     }, [params.id]);
+
+    /* -------------------------------------------------------------------------- */
+    /*                                   Filters                                  */
+    /* -------------------------------------------------------------------------- */
+    // handle 'part' select change
+    const handlePartChange = (event) => {
+        setSelectedPart(event.target.value);
+    }
+    // Filter parts based on 'part' selected
+    const partFilteredParts =
+      selectedPart === "all-parts"
+        ? parts
+        : parts.filter((part) => part.part_name === selectedPart);
 
   return (
     <>
@@ -80,12 +107,21 @@ function VehicleDetails() {
                     <fieldset className="vehicle-parts-interface__filter-fieldset">
                         <legend className="vehicle-parts-interface__filter-legend">Filter:</legend>
                         <div className="vehicle-parts-interface__filter-select-container">
-                            <select className="vehicle-parts-interface__filter-select" name="part" id="part">
-                                <option className="vehicle-parts-interface__filter-option" value="all">Part</option>
+                            <select 
+                                className="vehicle-parts-interface__filter-select" 
+                                name="part" 
+                                id="part"
+                                value={selectedPart}
+                                onChange={handlePartChange}
+                            >
+                                <option className="vehicle-parts-interface__filter-option" value="all-parts">All Parts</option>
+                                {partsList.map((part) => (
+                                    <option className="vehicle-parts-interface__filter-option" value={part} key={part}>{`${part}`}</option>
+                                ))}
                             </select>
-                            <select className="vehicle-parts-interface__filter-select" name="price" id="price">
+                            {/* <select className="vehicle-parts-interface__filter-select" name="price" id="price">
                                 <option className="vehicle-parts-interface__filter-option" value="all">Price</option>
-                            </select>
+                            </select> */}
                         </div>
                     </fieldset>
                     <div className="vehicle-parts-interface__sort-container">
@@ -107,13 +143,15 @@ function VehicleDetails() {
       <section className="vehicle-parts-list">
         <div className="vehicle-parts-list__container">
             <ul className="vehicle-parts-list__list">
-                {parts?.map((part) => (
-                    <li className="vehicle-parts-list__item"
-                        key={part.id}
-                    >
-                        <VehiclePartCard part={part} />
-                    </li>
-                ))}
+                {partFilteredParts
+                    .map((part) => (
+                        <li className="vehicle-parts-list__item"
+                            key={part.id}
+                        >
+                            <VehiclePartCard part={part} />
+                        </li>
+                    ))
+                }
             </ul>
         </div>
       </section>

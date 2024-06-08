@@ -13,8 +13,8 @@ function VehiclesList() {
     // const [ sortedCars, setSortedCars ] = useState([]);
     const [ vehicleMakeList, setVehicleMakeList ] = useState([]);
     const [ vehicleModelList, setVehicleModelList ] = useState([]);
-    const [ selectedMake, setSelectedMake ] = useState("all-make");
-    const [ selectedModel, setSelectedModel ] = useState("all-model");
+    const [ selectedMake, setSelectedMake ] = useState("all-makes");
+    const [ selectedModel, setSelectedModel ] = useState("all-models");
     
     /* -------------------------------------------------------------------------- */
     /*                          Get cars data from server                         */
@@ -29,16 +29,16 @@ function VehiclesList() {
                 setCars(response.data);
                 
                 // create set object variables to hold unique values
-                const makes = new Set();
-                const models = new Set();
+                const makesSet = new Set();
+                const modelsSet = new Set();
                 // extract unique makes and models from fetched cars data
                 response.data.forEach(car => {
-                    makes.add(car.make);
-                    models.add(car.model);
+                    makesSet.add(car.make);
+                    modelsSet.add(car.model);
                 });
                 // convert makes and models set objects to arrays and store in useState variables
-                setVehicleMakeList([...makes]);
-                setVehicleModelList([...models]);
+                setVehicleMakeList([...makesSet]);
+                setVehicleModelList([...modelsSet]);
             } catch (error) {
                 console.error("Error fetching cars data: ", error)
             }
@@ -59,12 +59,12 @@ function VehiclesList() {
     }
     // Filter cars based on 'make' selected
     const makeFilteredCars =
-      selectedMake === "all-make"
+      selectedMake === "all-makes"
         ? cars
         : cars.filter((car) => car.make === selectedMake);
     // Filter cars based on 'model' selected
     const makeAndModelFilteredCars =
-      selectedModel === "all-model"
+      selectedModel === "all-models"
         ? makeFilteredCars
         : makeFilteredCars.filter((car) => car.model === selectedModel);
 
@@ -92,7 +92,7 @@ function VehiclesList() {
                                     value={selectedMake}
                                     onChange={handleMakeChange}
                                 >
-                                    <option className="vehicles-interface__filter-option" value="all-make">All Make</option>
+                                    <option className="vehicles-interface__filter-option" value="all-makes">All Makes</option>
                                     {vehicleMakeList.map((make) => (
                                         <option className="vehicles-interface__filter-option" value={make} key={make}>{`${make}`}</option>
                                     ))}
@@ -104,7 +104,7 @@ function VehiclesList() {
                                     value={selectedModel}
                                     onChange={handleModelChange}
                                 >
-                                    <option className="vehicles-interface__filter-option" value="all-model">All Model</option>
+                                    <option className="vehicles-interface__filter-option" value="all-models">All Models</option>
                                     {vehicleModelList.map((model) => (
                                         <option className="vehicles-interface__filter-option" value={model} key={model}>{`${model}`}</option>
                                     ))}
