@@ -32,7 +32,7 @@ function VehicleDetails() {
     const [ selectedSort, setSelectedSort ] = useState("default");
     // for filter
     const [ partsList, setPartsList ] = useState([]);
-    const [ selectedPart, setSelectedPart ] = useState("all-parts")
+    const [ selectedPart, setSelectedPart ] = useState("all-parts");
     
     /* -------------------------------------------------------------------------- */
     /*       Get specific car data and associated parts data from server API      */
