@@ -42,11 +42,18 @@
 .vehicle-parts-interface{
     display: flex;
     flex-direction: column;
-    padding: 2rem 0 1rem 0;
+    padding: 1rem 0;
     border-top: 1px solid $text-color-dark;
     border-bottom: 1px solid $text-color-dark;
     &__container{
         @include all-responsive-site-padding;
+    }
+    &__search-title{
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+        @include tablet {
+            font-size: 1.5rem;
+        }
     }
     &__search-input{
         width: 100%;
@@ -59,9 +66,10 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: baseline;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         @include tablet {
             flex-direction: row;
+            margin-top: 1rem;
         }
     }
     &__filter-sort-container{

@@ -146,10 +146,11 @@ function VehicleDetails() {
       </section>
       <section className="vehicle-parts-interface">
         <div className="vehicle-parts-interface__container">
+            <h2 className="vehicle-parts-interface__search-title">Search parts by part name</h2>
             <input 
                 className="vehicle-parts-interface__search-input" 
                 type="search" 
-                placeholder="Search part by part name" 
+                placeholder="Search" 
                 value={searchInput}
                 onChange={handleSearchInputChange}
             />

@@ -125,10 +125,11 @@ function VehiclesList() {
         </section>
         <section className="vehicles-interface">
             <div className="vehicles-interface__container">
+                <h2 className="vehicle-parts-interface__search-title">Search cars by year, make, model</h2>
                 <input 
                     className="vehicles-interface__search-input" 
                     type="search" 
-                    placeholder="Search car by year, make, model" 
+                    placeholder="Search" 
                     value={searchInput}
                     onChange={handleSearchInputChange}
                 />
