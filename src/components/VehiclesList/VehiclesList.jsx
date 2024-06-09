@@ -59,10 +59,10 @@ function VehiclesList() {
     useEffect(() => {
         let sorted = [...cars];
         if (selectedSort === "post-new") {
-            sorted = sorted.sort((a, b) => b.created_at - a.created_at);
+            sorted = sorted.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         }
         else if (selectedSort === "post-old") {
-            sorted = sorted.sort((a, b) => a.created_at - b.created_at);
+            sorted = sorted.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
         }
         else if (selectedSort === "year-new") {
             sorted = sorted.sort((a, b) => b.year - a.year);
