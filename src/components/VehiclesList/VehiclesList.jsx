@@ -10,7 +10,10 @@ const baseUrl = "http://localhost:8080";
 function VehiclesList() {
 
     const [ cars, setCars ] = useState([]);
-    // const [ sortedCars, setSortedCars ] = useState([]);
+    // for sort
+    const [ sortedCars, setSortedCars ] = useState([]);
+    const [ selectedSort, setSelectedSort ] = useState("default");
+    // for filter
     const [ vehicleMakeList, setVehicleMakeList ] = useState([]);
     const [ vehicleModelList, setVehicleModelList ] = useState([]);
     const [ selectedMake, setSelectedMake ] = useState("all-makes");
@@ -47,6 +50,30 @@ function VehiclesList() {
     }, []);
 
     /* -------------------------------------------------------------------------- */
+    /*                                    Sort                                    */
+    /* -------------------------------------------------------------------------- */
+    // const [ sortMethod, setSortMethod ] = useState();
+    const handleSortChange = (event) => {
+        setSelectedSort(event.target.value);
+    }
+    useEffect(() => {
+        let sorted = [...cars];
+        if (selectedSort === "post-new") {
+            sorted = sorted.sort((a, b) => b.created_at - a.created_at);
+        }
+        else if (selectedSort === "post-old") {
+            sorted = sorted.sort((a, b) => a.created_at - b.created_at);
+        }
+        else if (selectedSort === "year-new") {
+            sorted = sorted.sort((a, b) => b.year - a.year);
+        }
+        else if (selectedSort === "year-old") {
+            sorted = sorted.sort((a, b) => a.year - b.year);
+        }
+        setSortedCars(sorted);
+    }, [selectedSort, cars]);
+
+    /* -------------------------------------------------------------------------- */
     /*                                   Filters                                  */
     /* -------------------------------------------------------------------------- */
     // handle 'make' select change
@@ -60,8 +87,8 @@ function VehiclesList() {
     // Filter cars based on 'make' selected
     const makeFilteredCars =
       selectedMake === "all-makes"
-        ? cars
-        : cars.filter((car) => car.make === selectedMake);
+        ? sortedCars
+        : sortedCars.filter((car) => car.make === selectedMake);
     // Filter cars based on 'model' selected
     const makeAndModelFilteredCars =
       selectedModel === "all-models"
@@ -113,11 +140,18 @@ function VehiclesList() {
                         </fieldset>
                         <div className="vehicles-interface__sort-container">
                             <label className="vehicles-interface__sort-label" htmlFor="sort">Sort:</label>
-                            <select className="vehicles-interface__sort-select" name="sort" id="sort">
-                                <option className="vehicles-interface__sort-option" value="new">New</option>
-                                <option className="vehicles-interface__sort-option" value="old">Old</option>
-                                <option className="vehicles-interface__sort-option" value="az">A-Z</option>
-                                <option className="vehicles-interface__sort-option" value="za">Z-A</option>
+                            <select 
+                                className="vehicles-interface__sort-select" 
+                                name="sort" 
+                                id="sort"
+                                value={selectedSort}
+                                onChange={handleSortChange}
+                            >
+                                <option className="vehicles-interface__sort-option" value="default">Default</option>
+                                <option className="vehicles-interface__sort-option" value="post-new">Post: New</option>
+                                <option className="vehicles-interface__sort-option" value="post-old">Post: Old</option>
+                                <option className="vehicles-interface__sort-option" value="year-new">Year: New</option>
+                                <option className="vehicles-interface__sort-option" value="year-old">Year: Old</option>
                             </select>
                         </div>
                     </div>
