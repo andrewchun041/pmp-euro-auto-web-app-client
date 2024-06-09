@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // price formatting function
 function formatPrice (price) {
     const numberPrice = parseFloat(price); // convert to number
-    return (numberPrice.toLocaleString('en-US'));
+    return (`$${numberPrice.toLocaleString('en-US')} USD`);
 }
 
 function VehiclePartCard({ part }) {
@@ -17,7 +17,7 @@ function VehiclePartCard({ part }) {
         {/* to replace once data is available */}
         {/* <img className="vehicle-part-card__img" src={part.img} alt={part.name} /> */}
         <h2 className="vehicle-part-card__name">{`${part.year} ${part.make} ${part.model} ${part.part_name}`}</h2>
-        <p className="vehicle-part-card__price">{`$${formatPrice(part.price)} USD`}</p>
+        <p className="vehicle-part-card__price">{formatPrice(part.price)}</p>
       </Link>
     </article>
   );

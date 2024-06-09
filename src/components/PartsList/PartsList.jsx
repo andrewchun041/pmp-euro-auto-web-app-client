@@ -22,7 +22,7 @@ function PartsList() {
     const [ selectedPart, setSelectedPart ] = useState("all-parts");
 
     /* -------------------------------------------------------------------------- */
-    /*                          Get cars data from server                         */
+    /*                       Get parts data from server api                       */
     /* -------------------------------------------------------------------------- */
     useEffect(() => {
         const getParts = async () => {
