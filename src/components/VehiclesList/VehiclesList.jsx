@@ -128,7 +128,7 @@ function VehiclesList() {
                 <input 
                     className="vehicles-interface__search-input" 
                     type="search" 
-                    placeholder="Search" 
+                    placeholder="Search car by year, make, model" 
                     value={searchInput}
                     onChange={handleSearchInputChange}
                 />

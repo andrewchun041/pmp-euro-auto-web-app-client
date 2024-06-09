@@ -24,6 +24,9 @@ function VehicleDetails() {
     // date
     const [ car, setCar ] = useState({});
     const [ parts, setParts ] = useState([]);
+    // for search
+    const [ searchInput, setSearchInput ] = useState("");
+    const [ searchedParts, setSearchedParts ] = useState([]);
     // for sort
     const [ sortedParts, setSortedParts ] = useState([]);
     const [ selectedSort, setSelectedSort ] = useState("default");
@@ -71,13 +74,27 @@ function VehicleDetails() {
     }, [params.id]);
 
     /* -------------------------------------------------------------------------- */
+    /*                                   Search                                   */
+    /* -------------------------------------------------------------------------- */
+    const handleSearchInputChange = (event) => {
+        const searchTerm = event.target.value;
+        setSearchInput(searchTerm);
+    }
+    useEffect(() => {
+        const searchFilteredList = parts.filter((part) => 
+            part.part_name.toLowerCase().includes(searchInput.toLowerCase())
+        );
+        setSearchedParts(searchFilteredList);
+    }, [searchInput, parts]);
+
+    /* -------------------------------------------------------------------------- */
     /*                                    Sort                                    */
     /* -------------------------------------------------------------------------- */
     const handleSortChange = (event) => {
         setSelectedSort(event.target.value);
     }
     useEffect(() => {
-        let sorted = [...parts];
+        let sorted = [...searchedParts];
         if (selectedSort === "price-high") {
             sorted = sorted.sort((a, b) => Number(b.price) - Number(a.price));
         }
@@ -91,7 +108,7 @@ function VehicleDetails() {
             sorted = sorted.sort((a, b) => b.part_name.localeCompare(a.part_name));
         }
         setSortedParts(sorted);
-    }, [selectedSort, parts]);
+    }, [selectedSort, searchedParts]);
 
     /* -------------------------------------------------------------------------- */
     /*                                   Filters                                  */
@@ -129,7 +146,13 @@ function VehicleDetails() {
       </section>
       <section className="vehicle-parts-interface">
         <div className="vehicle-parts-interface__container">
-            <input className="vehicle-parts-interface__search-input" type="search" placeholder="Search" />
+            <input 
+                className="vehicle-parts-interface__search-input" 
+                type="search" 
+                placeholder="Search part by part name" 
+                value={searchInput}
+                onChange={handleSearchInputChange}
+            />
             <div className="vehicle-parts-interface__filter-sort-num-prod-container">
                 <div className="vehicle-parts-interface__filter-sort-container">
                     <fieldset className="vehicle-parts-interface__filter-fieldset">
