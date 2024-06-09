@@ -21,8 +21,13 @@ function formatDate (date) {
 function VehicleDetails() {
     const params = useParams();
 
+    // date
     const [ car, setCar ] = useState({});
     const [ parts, setParts ] = useState([]);
+    // for sort
+    const [ sortedParts, setSortedParts ] = useState([]);
+    const [ selectedSort, setSelectedSort ] = useState("default");
+    // for filter
     const [ partsList, setPartsList ] = useState([]);
     const [ selectedPart, setSelectedPart ] = useState("all-parts")
     
@@ -66,6 +71,29 @@ function VehicleDetails() {
     }, [params.id]);
 
     /* -------------------------------------------------------------------------- */
+    /*                                    Sort                                    */
+    /* -------------------------------------------------------------------------- */
+    const handleSortChange = (event) => {
+        setSelectedSort(event.target.value);
+    }
+    useEffect(() => {
+        let sorted = [...parts];
+        if (selectedSort === "price-high") {
+            sorted = sorted.sort((a, b) => Number(b.price) - Number(a.price));
+        }
+        else if (selectedSort === "price-low") {
+            sorted = sorted.sort((a, b) => Number(a.price) - Number(b.price));
+        }
+        else if (selectedSort === "alphabetical-a") {
+            sorted = sorted.sort((a, b) => a.part_name.localeCompare(b.part_name));
+        }
+        else if (selectedSort === "alphabetical-z") {
+            sorted = sorted.sort((a, b) => b.part_name.localeCompare(a.part_name));
+        }
+        setSortedParts(sorted);
+    }, [selectedSort, parts]);
+
+    /* -------------------------------------------------------------------------- */
     /*                                   Filters                                  */
     /* -------------------------------------------------------------------------- */
     // handle 'part' select change
@@ -75,8 +103,8 @@ function VehicleDetails() {
     // Filter parts based on 'part' selected
     const partFilteredParts =
       selectedPart === "all-parts"
-        ? parts
-        : parts.filter((part) => part.part_name === selectedPart);
+        ? sortedParts
+        : sortedParts.filter((part) => part.part_name === selectedPart);
 
   return (
     <>
@@ -126,11 +154,18 @@ function VehicleDetails() {
                     </fieldset>
                     <div className="vehicle-parts-interface__sort-container">
                         <label className="vehicle-parts-interface__sort-label" htmlFor="sort">Sort:</label>
-                        <select className="vehicle-parts-interface__sort-select" name="sort" id="sort">
-                            <option className="vehicle-parts-interface__sort-option" value="new">New</option>
-                            <option className="vehicle-parts-interface__sort-option" value="old">Old</option>
-                            <option className="vehicle-parts-interface__sort-option" value="az">A-Z</option>
-                            <option className="vehicle-parts-interface__sort-option" value="za">Z-A</option>
+                        <select 
+                            className="vehicle-parts-interface__sort-select" 
+                            name="sort" 
+                            id="sort"
+                            value={selectedSort}
+                            onChange={handleSortChange}
+                        >
+                            <option className="vehicle-parts-interface__sort-option" value="default">Default</option>
+                            <option className="vehicle-parts-interface__sort-option" value="price-high">Price: High</option>
+                            <option className="vehicle-parts-interface__sort-option" value="price-low">Price: Low</option>
+                            <option className="vehicle-parts-interface__sort-option" value="alphabetical-a">Alphabetical: A-Z</option>
+                            <option className="vehicle-parts-interface__sort-option" value="alphabetical-z">Alphabetical: Z-A</option>
                         </select>
                     </div>
                 </div>

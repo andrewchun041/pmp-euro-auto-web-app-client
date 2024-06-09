@@ -9,6 +9,7 @@ const baseUrl = "http://localhost:8080";
 
 function VehiclesList() {
 
+    // data
     const [ cars, setCars ] = useState([]);
     // for sort
     const [ sortedCars, setSortedCars ] = useState([]);
@@ -52,7 +53,6 @@ function VehiclesList() {
     /* -------------------------------------------------------------------------- */
     /*                                    Sort                                    */
     /* -------------------------------------------------------------------------- */
-    // const [ sortMethod, setSortMethod ] = useState();
     const handleSortChange = (event) => {
         setSelectedSort(event.target.value);
     }
