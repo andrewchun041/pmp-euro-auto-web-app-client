@@ -11,6 +11,9 @@ function VehiclesList() {
 
     // data
     const [ cars, setCars ] = useState([]);
+    // for search
+    const [ searchInput, setSearchInput ] = useState("");
+    const [ searchedCars, setSearchedCars ] = useState([]);
     // for sort
     const [ sortedCars, setSortedCars ] = useState([]);
     const [ selectedSort, setSelectedSort ] = useState("default");
@@ -51,13 +54,29 @@ function VehiclesList() {
     }, []);
 
     /* -------------------------------------------------------------------------- */
+    /*                                   Search                                   */
+    /* -------------------------------------------------------------------------- */
+    const handleSearchInputChange = (event) => {
+        const searchTerm = event.target.value;
+        setSearchInput(searchTerm);
+    }
+    useEffect(() => {
+        const searchFilteredList = cars.filter((car) => 
+            car.year.toString().includes(searchInput) ||
+            car.make.toLowerCase().includes(searchInput.toLowerCase()) ||
+            car.model.toLowerCase().includes(searchInput.toLowerCase())
+        );
+        setSearchedCars(searchFilteredList);
+    }, [searchInput, cars]);
+
+    /* -------------------------------------------------------------------------- */
     /*                                    Sort                                    */
     /* -------------------------------------------------------------------------- */
     const handleSortChange = (event) => {
         setSelectedSort(event.target.value);
     }
     useEffect(() => {
-        let sorted = [...cars];
+        let sorted = [...searchedCars];
         if (selectedSort === "post-new") {
             sorted = sorted.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         }
@@ -71,7 +90,7 @@ function VehiclesList() {
             sorted = sorted.sort((a, b) => a.year - b.year);
         }
         setSortedCars(sorted);
-    }, [selectedSort, cars]);
+    }, [selectedSort, searchedCars]);
 
     /* -------------------------------------------------------------------------- */
     /*                                   Filters                                  */
@@ -106,7 +125,13 @@ function VehiclesList() {
         </section>
         <section className="vehicles-interface">
             <div className="vehicles-interface__container">
-                <input className="vehicles-interface__search-input" type="search" placeholder="Search" />
+                <input 
+                    className="vehicles-interface__search-input" 
+                    type="search" 
+                    placeholder="Search" 
+                    value={searchInput}
+                    onChange={handleSearchInputChange}
+                />
                 <div className="vehicles-interface__filter-sort-num-prod-container">
                     <div className="vehicles-interface__filter-sort-container">
                         <fieldset className="vehicles-interface__filter-fieldset">
