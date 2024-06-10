@@ -8,6 +8,7 @@ import VehiclesList from './components/VehiclesList/VehiclesList';
 import VehicleDetails from './components/VehicleDetails/VehicleDetails';
 import PartsList from './components/PartsList/PartsList';
 import PartDetails from './components/PartDetails/PartDetails';
+import AddVehicle from './components/AddVehicle/AddVehicle';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<Home />}></Route>
           <Route path='/vehicles' element={<VehiclesList />}></Route>
           <Route path='/vehicles/:id' element={<VehicleDetails />}></Route>
+          <Route path='/vehicles/add' element={<AddVehicle />}></Route>
           <Route path='/parts' element={<PartsList />}></Route>
           <Route path='/parts/:id' element={<PartDetails />}></Route>
         </Routes>

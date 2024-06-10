@@ -36,3 +36,27 @@ input {
     color: $text-color-highlight;
     line-height: 2rem;
 }
+.btn{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.5rem 2rem;
+    &:hover{
+        transition-duration: 0.25s;
+        cursor: pointer;
+    }
+    &--cta{
+        background-color: $text-color-highlight;
+        color: white;
+        &:hover{
+            background-color: #036677;
+        }
+    }
+    &--cancel{
+        border: 1px solid $text-color-dark;
+        background-color: white;
+        &:hover{
+            border: 1px solid $pmp-red;
+            color: $pmp-red;
+        }
+    }
+}
