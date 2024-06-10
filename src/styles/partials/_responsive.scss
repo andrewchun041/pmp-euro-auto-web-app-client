@@ -1,0 +1,51 @@
+/* -------------------------------------------------------------------------- */
+/*                                Media Queries                               */
+/* -------------------------------------------------------------------------- */
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: 1280px) {
+        @content;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                             Site Padding Mixins                            */
+/* -------------------------------------------------------------------------- */
+// Mobile site padding
+@mixin m-site-padding ($m-padding: 1rem) {
+    padding-left: $m-padding;
+    padding-right: $m-padding
+}
+// Tablet site padding
+@mixin t-site-padding ($t-padding: 2.25rem) {
+    padding-left: $t-padding;
+    padding-right: $t-padding;
+}
+// Desktop site padding
+@mixin d-site-padding ($d-padding: 5rem) {
+    padding-left: $d-padding;
+    padding-right: $d-padding;
+}
+// Mobile-Tablet-Desktop responsive site padding
+@mixin all-responsive-site-padding {
+    @include m-site-padding;
+    @include tablet {
+        @include t-site-padding;
+    }
+    @include desktop {
+        @include d-site-padding;
+    }
+}
+// Tablet-Desktop responsive site padding
+@mixin t-d-responsive-site-padding {
+    @include tablet {
+        @include t-site-padding;
+    }
+    @include desktop {
+        @include d-site-padding;
+    }
+}

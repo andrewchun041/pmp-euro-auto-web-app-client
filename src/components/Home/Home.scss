@@ -1,0 +1,59 @@
+@use '../../styles/partials/color' as *;
+@use '../../styles/partials/responsive' as *;
+
+.home-hero-banner{
+    &__background{
+        background-image: url('../../assets/images/home-page-hero-banner.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    &__text-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5rem 0;
+        background-color: rgb($pmp-dark, 0.5);
+    }
+    &__slogan{
+        color: $text-color-light;
+        font-size: 1rem;
+        @include tablet {
+            font-size: 1.25rem;
+        }
+    }
+    &__title{
+        // color: $text-color-highlight;
+        color: $pmp-red;
+        // color: red;
+        font-size: 2.5rem;
+        @include tablet {
+            font-size: 3.5rem;
+        }
+    }
+    &__description{
+        color: $text-color-light;
+        width: 50%;
+        text-align: center;
+        font-size: 1rem;
+        @include tablet {
+            font-size: 1.4rem;
+        }
+    }
+}
+.home-gallery{
+    @include all-responsive-site-padding;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+    &__title{
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+    &__img-container{
+        display: flex;  // fixes bottom empty space between img and container
+        background-color: $pmp-lightdark;
+        padding: 0.5rem;
+    }
+}

@@ -1,0 +1,69 @@
+/* -------------------------------------------------------------------------- */
+/*                                  Partials                                  */
+/* -------------------------------------------------------------------------- */
+@use './fonts' as *;
+@use './color' as *;
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Titillium";
+}
+
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+input {
+    height: 2rem;
+    border-radius: 1rem;
+    border: 1px solid $pmp-dark;
+    padding: 0 2rem 0 1rem;
+    // kept for later use (to delete if not needed)
+    // &:focus{
+        // outline: none;
+        // border: 1px solid $text-color-highlight;
+    // }
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $text-color-highlight;
+    line-height: 2rem;
+}
+.btn{
+    border: none;
+    border-radius: 1.5rem;
+    padding: 0.5rem 2rem;
+    &:hover{
+        transition-duration: 0.25s;
+        cursor: pointer;
+    }
+    &--cta{
+        background-color: $text-color-highlight;
+        color: white;
+        &:hover{
+            background-color: #036677;
+        }
+    }
+    &--delete{
+        background-color: $pmp-red;
+        color: white;
+        &:hover{
+            background-color: #922828;
+        }
+    }
+    &--cancel{
+        border: 1px solid $text-color-dark;
+        background-color: white;
+        &:hover{
+            border: 1px solid $pmp-red;
+            color: $pmp-red;
+        }
+    }
+}

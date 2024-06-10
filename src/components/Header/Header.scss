@@ -1,0 +1,48 @@
+@use '../../styles/partials/color' as *;
+@use '../../styles/partials/responsive' as *;
+
+.header{
+    // padding
+    @include all-responsive-site-padding;
+    $header-padding: 1rem;
+    padding-top: $header-padding;
+    padding-bottom: $header-padding;
+    // color
+    background-color: $pmp-lightdark;
+    // flexbox
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include tablet {
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+    &__logo-link{
+        white-space: nowrap;
+    }
+    &__navlist{
+        @include tablet {
+            display: flex;
+        }
+    }
+    &__navlist-item{
+        text-align: center;
+        @include tablet {
+            margin-left: 0.75rem;
+        }
+    }
+    &__navlink{
+        font-size: 1.25rem;
+        color: $text-color-light;
+        &:hover{
+            color: $text-color-highlight;
+        }
+    }
+
+}
+
+.active {
+    color: $text-color-highlight;
+}
