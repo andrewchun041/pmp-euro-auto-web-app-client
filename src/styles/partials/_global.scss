@@ -51,6 +51,13 @@ input {
             background-color: #036677;
         }
     }
+    &--delete{
+        background-color: $pmp-red;
+        color: white;
+        &:hover{
+            background-color: #922828;
+        }
+    }
     &--cancel{
         border: 1px solid $text-color-dark;
         background-color: white;

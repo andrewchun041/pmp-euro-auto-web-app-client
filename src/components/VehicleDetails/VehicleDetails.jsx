@@ -41,6 +41,16 @@ function VehicleDetails() {
     const handleEditBtnClick = () => {
         Navigate(`/vehicles/${params.id}/edit`);
     }
+    const handleDeleteBtnClick = async () => {
+        try {
+            await axios.delete(`${baseUrl}/cars/${params.id}`);
+            alert("Car was successfully delete");
+        } catch (error) {
+            console.error("Error deleting car in server database: ", error)
+        }
+
+        Navigate(`/vehicles`);
+    }
 
     /* -------------------------------------------------------------------------- */
     /*       Get specific car data and associated parts data from server API      */
@@ -156,6 +166,7 @@ function VehicleDetails() {
         <div className="vehicle-parts-crud__container">
             <div className="vehicle-parts-crud__btn-container">
                 <button className="vehicle-parts-crud__btn btn btn--cta" onClick={handleEditBtnClick}>Edit Vehicle</button>
+                <button className="vehicle-parts-crud__btn btn btn--delete" onClick={handleDeleteBtnClick}>Delete Vehicle</button>
             </div>
         </div>
       </section>

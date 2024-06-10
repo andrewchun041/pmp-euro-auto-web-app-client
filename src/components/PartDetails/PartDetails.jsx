@@ -34,6 +34,16 @@ function PartDetails() {
     const handleEditBtnClick = () => {
         Navigate(`/parts/${params.id}/edit`);
     }
+    const handleDeleteBtnClick = async () => {
+        try {
+            await axios.delete(`${baseUrl}/car-parts/${params.id}`);
+            alert("Part was successfully delete");
+        } catch (error) {
+            console.error("Error deleting part in server database: ", error)
+        }
+
+        Navigate(`/parts`);
+    }
 
     /* -------------------------------------------------------------------------- */
     /*                   Get specific part data from server API                   */
@@ -85,6 +95,7 @@ function PartDetails() {
         <div className="part-crud__container">
             <div className="part-crud__btn-container">
                 <button className="part-crud__btn btn btn--cta" onClick={handleEditBtnClick}>Edit Part</button>
+                <button className="part-crud__btn btn btn--delete" onClick={handleDeleteBtnClick}>Delete Part</button>
             </div>
         </div>
       </section>
