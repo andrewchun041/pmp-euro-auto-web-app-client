@@ -84,7 +84,7 @@ function PartDetails() {
       <section className="part-crud">
         <div className="part-crud__container">
             <div className="part-crud__btn-container">
-                <button className="part-crud__btn btn btn--cta" onClick={handleEditBtnClick}>+ edit part</button>
+                <button className="part-crud__btn btn btn--cta" onClick={handleEditBtnClick}>Edit Part</button>
             </div>
         </div>
       </section>

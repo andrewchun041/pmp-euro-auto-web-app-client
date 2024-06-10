@@ -208,7 +208,7 @@ function EditVehicle() {
             </div>
             <div className="edit-vehicle__btn-container">
               <button className="edit-vehicle__btn edit-vehicle__btn--cta btn btn--cta">
-                + edit vehicle
+                Save Vehicle
               </button>
               <button
                 className="edit-vehicle__btn edit-vehicle__btn--cancel btn btn--cancel"

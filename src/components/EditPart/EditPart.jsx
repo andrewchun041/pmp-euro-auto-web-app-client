@@ -171,7 +171,7 @@ function EditPart() {
             </div>
             <div className="edit-part__btn-container">
               <button className="edit-part__btn edit-part__btn--cta btn btn--cta">
-                + edit part
+                Save Part
               </button>
               <button
                 className="edit-part__btn edit-part__btn--cancel btn btn--cancel"
