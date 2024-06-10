@@ -73,8 +73,8 @@ function EditVehicle() {
         };
 
         try {
-            const response = await axios.patch(`${baseUrl}/cars`, dataToSend);
-            if (response.status === 201) {
+            const response = await axios.patch(`${baseUrl}/cars/${params.id}`, dataToSend);
+            if (response.status === 200) {
                 alert("Vehicle editted successfully");
 
                 // TO ADD NAVIGATE TO NEWLY ADDED VEHICLE IN THE FUTURE
