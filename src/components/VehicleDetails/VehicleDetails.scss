@@ -39,6 +39,18 @@
         margin-bottom: 1rem;
     }
 }
+.vehicle-parts-crud{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    &__container{
+        @include all-responsive-site-padding;
+    }
+    &__btn-container{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
 .vehicle-parts-interface{
     display: flex;
     flex-direction: column;

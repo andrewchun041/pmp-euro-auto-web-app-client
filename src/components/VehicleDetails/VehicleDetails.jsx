@@ -1,7 +1,7 @@
 import './VehicleDetails.scss';
 import carExample from '../../assets/images/home-page-gallery-photo.jpeg';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -34,6 +34,14 @@ function VehicleDetails() {
     const [ partsList, setPartsList ] = useState([]);
     const [ selectedPart, setSelectedPart ] = useState("all-parts");
     
+    /* -------------------------------------------------------------------------- */
+    /*                                 Navigation                                 */
+    /* -------------------------------------------------------------------------- */
+    const Navigate = useNavigate();
+    const handleAddBtnClick = () => {
+        Navigate(`/vehicles/${params.id}/edit`);
+    }
+
     /* -------------------------------------------------------------------------- */
     /*       Get specific car data and associated parts data from server API      */
     /* -------------------------------------------------------------------------- */
@@ -141,6 +149,13 @@ function VehicleDetails() {
                     <p className="vehicle-details__car-details-text">{`Mileage (miles): ${car.mileage_miles}`}</p>
                     <p className="vehicle-details__car-details-text">{`Posted Date: ${formatDate(car.created_at)}`}</p>
                 </div>
+            </div>
+        </div>
+      </section>
+      <section className="vehicle-parts-crud">
+        <div className="vehicle-parts-crud__container">
+            <div className="vehicle-parts-crud__btn-container">
+                <button className="vehicle-parts-crud__btn btn btn--cta" onClick={handleAddBtnClick}>+ edit vehicle</button>
             </div>
         </div>
       </section>

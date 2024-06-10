@@ -1,7 +1,7 @@
 import './PartDetails.scss';
 import partExample from '../../assets/images/parts-page-banner.jpg';
 
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link , useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -26,6 +26,14 @@ function PartDetails() {
     const params = useParams();
 
     const [ part, setPart ] = useState([]);
+
+    /* -------------------------------------------------------------------------- */
+    /*                                 Navigation                                 */
+    /* -------------------------------------------------------------------------- */
+    const Navigate = useNavigate();
+    const handleAddBtnClick = () => {
+        Navigate(`/parts/${params.id}/edit`);
+    }
 
     /* -------------------------------------------------------------------------- */
     /*                   Get specific part data from server API                   */
@@ -70,6 +78,13 @@ function PartDetails() {
                     <p className="part-details__part-details-text">{`Mileage (miles): ${part.mileage_miles}`}</p>
                     <p className="part-details__part-details-text">{`Posted Date: ${formatDate(part.created_at)}`}</p>
                 </div>
+            </div>
+        </div>
+      </section>
+      <section className="part-crud">
+        <div className="part-crud__container">
+            <div className="part-crud__btn-container">
+                <button className="part-crud__btn btn btn--cta" onClick={handleAddBtnClick}>+ edit part</button>
             </div>
         </div>
       </section>

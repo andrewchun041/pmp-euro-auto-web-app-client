@@ -19,11 +19,13 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/vehicles' element={<VehiclesList />}></Route>
-          <Route path='/vehicles/:id' element={<VehicleDetails />}></Route>
           <Route path='/vehicles/add' element={<AddVehicle />}></Route>
+          <Route path='/vehicles/:id' element={<VehicleDetails />}></Route>
+          {/* <Route path='/vehicles/:id/edit' element={<EditVehicle />}></Route> */}
           <Route path='/parts' element={<PartsList />}></Route>
-          <Route path='/parts/:id' element={<PartDetails />}></Route>
           <Route path='/parts/add' element={<AddPart />}></Route>
+          <Route path='/parts/:id' element={<PartDetails />}></Route>
+          {/* <Route path='/parts/:id/edit' element={<EditPart />}></Route> */}
         </Routes>
         <Footer />
       </BrowserRouter>
