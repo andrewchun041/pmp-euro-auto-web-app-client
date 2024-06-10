@@ -9,6 +9,7 @@ import VehicleDetails from './components/VehicleDetails/VehicleDetails';
 import PartsList from './components/PartsList/PartsList';
 import PartDetails from './components/PartDetails/PartDetails';
 import AddVehicle from './components/AddVehicle/AddVehicle';
+import AddPart from './components/AddPart/AddPart';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/vehicles/add' element={<AddVehicle />}></Route>
           <Route path='/parts' element={<PartsList />}></Route>
           <Route path='/parts/:id' element={<PartDetails />}></Route>
+          <Route path='/parts/add' element={<AddPart />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
