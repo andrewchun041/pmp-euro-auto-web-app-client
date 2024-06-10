@@ -55,5 +55,9 @@
         display: flex;  // fixes bottom empty space between img and container
         background-color: $pmp-lightdark;
         padding: 0.5rem;
+        width: 100%;
+    }
+    &__img{
+        width: 100%;
     }
 }
