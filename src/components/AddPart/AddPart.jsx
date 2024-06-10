@@ -9,6 +9,13 @@ const baseUrl = "http://localhost:8080";
 function AddPart() {
     const Navigate = useNavigate();
 
+    const dataToSendInitial = {
+        part_stock: "",
+        part_name: "",
+        price: "",
+        number_of_pieces: "",
+        car_id: "",
+    }
     const formInitial = {
         part_stock: "",
         part_name: "",
@@ -18,6 +25,7 @@ function AddPart() {
         car_id: "",
     }
     const [ form, setForm ] = useState(formInitial);
+    // const [ dataToSend, setDataToSend ] = useState(dataToSendInitial);
 
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -28,10 +36,35 @@ function AddPart() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-
+        // TO CHANGE TO A SEARCH DROP DOWN SELECTION MENU IN THE FUTURE
+        /* -------------------------------------------------------------------------- */
+        /*           Server API call to find id of car with input car stock           */
+        /* -------------------------------------------------------------------------- */
+        let updatedForm = { 
+            ...dataToSendInitial,
+            part_stock: parseInt(form.part_stock),
+            part_name: form.part_name,
+            price: parseFloat(form.price),
+            number_of_pieces: parseInt(form.number_of_pieces),
+        };
+        try {
+            const response = await axios.get(`${baseUrl}/cars`);
+            const currentCars = response.data;
+            const foundCar = currentCars.find((car) => car.car_stock === form.car_stock);
+            if (foundCar) {
+                updatedForm.car_id = foundCar.id;
+            } else {
+                alert("Car with the provided Car Stock # does not exist.")
+                return
+            }
+        } catch (error) {
+            console.error("Failed to retrieve cars data: ", error);
+            alert("An error occurred while retrieving car data.");
+            return;
+        } console.log(updatedForm);
 
         try {
-            const response = await axios.post(`${baseUrl}/car-parts`, form);
+            const response = await axios.post(`${baseUrl}/car-parts`, updatedForm);
             if (response.status === 201) {
                 alert("Part added successfully");
                 setForm(formInitial);
@@ -39,11 +72,11 @@ function AddPart() {
                 // TO ADD NAVIGATE TO NEWLY ADDED PART IN THE FUTURE
                 Navigate("/parts");
             } else {
-                alert("Failed to add part")
+                alert("Failed to add part");
             }
         } catch (error) {
             console.error("Error posting part: ", error);
-            alert("An unexpected error occurred")
+            alert("Failed to post part");
         }
     }
 

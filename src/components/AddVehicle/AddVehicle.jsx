@@ -38,11 +38,11 @@ function AddVehicle() {
                 // TO ADD NAVIGATE TO NEWLY ADDED VEHICLE IN THE FUTURE
                 Navigate("/vehicles");
             } else {
-                alert("Failed to add vehicle")
+                alert("Failed to add vehicle");
             }
         } catch (error) {
             console.error("Error posting vehicle: ", error);
-            alert("An unexpected error occurred")
+            alert("Failed to post vehicle");
         }
     }
 
