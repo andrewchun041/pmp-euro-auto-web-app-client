@@ -31,7 +31,7 @@ function PartDetails() {
     /*                                 Navigation                                 */
     /* -------------------------------------------------------------------------- */
     const Navigate = useNavigate();
-    const handleAddBtnClick = () => {
+    const handleEditBtnClick = () => {
         Navigate(`/parts/${params.id}/edit`);
     }
 
@@ -84,7 +84,7 @@ function PartDetails() {
       <section className="part-crud">
         <div className="part-crud__container">
             <div className="part-crud__btn-container">
-                <button className="part-crud__btn btn btn--cta" onClick={handleAddBtnClick}>+ edit part</button>
+                <button className="part-crud__btn btn btn--cta" onClick={handleEditBtnClick}>+ edit part</button>
             </div>
         </div>
       </section>

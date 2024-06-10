@@ -38,7 +38,7 @@ function VehicleDetails() {
     /*                                 Navigation                                 */
     /* -------------------------------------------------------------------------- */
     const Navigate = useNavigate();
-    const handleAddBtnClick = () => {
+    const handleEditBtnClick = () => {
         Navigate(`/vehicles/${params.id}/edit`);
     }
 
@@ -155,7 +155,7 @@ function VehicleDetails() {
       <section className="vehicle-parts-crud">
         <div className="vehicle-parts-crud__container">
             <div className="vehicle-parts-crud__btn-container">
-                <button className="vehicle-parts-crud__btn btn btn--cta" onClick={handleAddBtnClick}>+ edit vehicle</button>
+                <button className="vehicle-parts-crud__btn btn btn--cta" onClick={handleEditBtnClick}>+ edit vehicle</button>
             </div>
         </div>
       </section>
