@@ -2,13 +2,13 @@ import './VehiclesList.scss';
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom"; 
 
 import VehicleCard from '../VehicleCard/VehicleCard';
 
 const baseUrl = "http://localhost:8080";
 
 function VehiclesList() {
-
     // data
     const [ cars, setCars ] = useState([]);
     // for search
@@ -22,6 +22,14 @@ function VehiclesList() {
     const [ vehicleModelList, setVehicleModelList ] = useState([]);
     const [ selectedMake, setSelectedMake ] = useState("all-makes");
     const [ selectedModel, setSelectedModel ] = useState("all-models");
+
+    /* -------------------------------------------------------------------------- */
+    /*                                 Navigation                                 */
+    /* -------------------------------------------------------------------------- */
+    const Navigate = useNavigate();
+    const handleAddBtnClick = () => {
+        Navigate("/vehicles/add");
+    }
     
     /* -------------------------------------------------------------------------- */
     /*                          Get cars data from server                         */
@@ -120,6 +128,13 @@ function VehiclesList() {
             <div className="vehicles-hero-banner__background">
                 <div className="vehicles-hero-banner__text-container">
                     <h1 className="vehicles-hero-banner__title">Vehicles</h1>
+                </div>
+            </div>
+        </section>
+        <section className="vehicles-crud">
+            <div className="vehicles-crud__container">
+                <div className="vehicles-crud__btn-container">
+                    <button className="vehicles-crud__btn btn btn--cta" onClick={handleAddBtnClick}>+ add vehicle</button>
                 </div>
             </div>
         </section>

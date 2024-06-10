@@ -13,8 +13,6 @@
         display: flex;
         flex-direction: column;
     }
-    &__title{}
-    &__form{}
     &__all-input-container{
         display: flex;
         flex-direction: column;
@@ -42,7 +40,6 @@
             }
         }
     }
-    &__label{}
     &__input{
         margin-top: 0.25rem;
     }
