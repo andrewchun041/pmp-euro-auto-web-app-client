@@ -1,12 +1,13 @@
-import "./AddPart.scss";
+import "./EditPart.scss";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; 
+import { useParams, useNavigate } from "react-router-dom"; 
 
 const baseUrl = "http://localhost:8080";
 
-function AddPart() {
+function EditPart() {
+    const params = useParams();
     const Navigate = useNavigate();
 
     const dataToSendInitial = {
@@ -26,6 +27,27 @@ function AddPart() {
     }
     const [ form, setForm ] = useState(formInitial);
 
+    useEffect(() => {
+        const getPartInfo = async () => {
+            try {
+                const response = await axios.get(`${baseUrl}/car-parts/${params.id}`);
+                const part = response.data;
+                setForm({
+                    part_stock: part.part_stock,
+                    part_name: part.part_name,
+                    price: part.price,
+                    number_of_pieces: part.number_of_pieces,
+                    car_stock: part.car_stock,
+                    car_id: part.car_id,
+                });
+            } catch (error) {
+                console.error("Failed to retrieve part information: ", error);
+                alert("Failed to retrieve part information");
+            }
+        }
+        getPartInfo();
+    }, [params.id]);
+
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
@@ -35,67 +57,48 @@ function AddPart() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // TO CHANGE TO A SEARCH DROP DOWN SELECTION MENU IN THE FUTURE
-        /* -------------------------------------------------------------------------- */
-        /*           Server API call to find id of car with input car stock           */
-        /* -------------------------------------------------------------------------- */
         let dataToSend = { 
             ...dataToSendInitial,
             part_stock: parseInt(form.part_stock),
             part_name: form.part_name,
             price: parseFloat(form.price),
             number_of_pieces: parseInt(form.number_of_pieces),
+            car_id: parseInt(form.car_id),
         };
-        try {
-            const response = await axios.get(`${baseUrl}/cars`);
-            const currentCars = response.data;
-            const foundCar = currentCars.find((car) => car.car_stock === form.car_stock);
-            if (foundCar) {
-                dataToSend.car_id = foundCar.id;
-            } else {
-                alert("Car with the provided Car Stock # does not exist.")
-                return;
-            }
-        } catch (error) {
-            console.error("Failed to retrieve cars data: ", error);
-            alert("An error occurred while retrieving car data.");
-            return;
-        }
 
         try {
-            const response = await axios.post(`${baseUrl}/car-parts`, dataToSend);
-            if (response.status === 201) {
-                alert("Part added successfully");
+            const response = await axios.patch(`${baseUrl}/car-parts/${params.id}`, dataToSend); console.log(dataToSend);
+            if (response.status === 200) {
+                alert("Part editted successfully");
 
-                // TO ADD NAVIGATE TO NEWLY ADDED PART IN THE FUTURE
-                Navigate("/parts");
+                Navigate(`/parts/${params.id}`);
             } else {
-                alert("Failed to add part");
+                alert("Failed to edit part");
             }
         } catch (error) {
-            console.error("Error posting part: ", error);
-            alert("Failed to post part");
+            console.error("Error editting part: ", error);
+            alert("Failed to edit part");
         }
     }
 
     const handleCancelBtn = () => {
-        Navigate ("/parts");
+        Navigate (`/parts/${params.id}`);
     };
 
   return (
     <>
-      <section className="add-part">
-        <div className="add-part__title-form-container">
-          <h2 className="add-part__title">Add New Part</h2>
-          <form className="add-part__form" onSubmit={handleSubmit}>
-            <div className="add-part__all-input-container">
-              <div className="add-part__two-input-block">
-                <div className="add-part__input-label-container">
-                  <label className="add-part__label" htmlFor="part_stock">
+      <section className="edit-part">
+        <div className="edit-part__title-form-container">
+          <h2 className="edit-part__title">Edit Part</h2>
+          <form className="edit-part__form" onSubmit={handleSubmit}>
+            <div className="edit-part__all-input-container">
+              <div className="edit-part__two-input-block">
+                <div className="edit-part__input-label-container">
+                  <label className="edit-part__label" htmlFor="part_stock">
                     Part Stock #:
                   </label>
                   <input
-                    className="add-part__input"
+                    className="edit-part__input"
                     type="text"
                     name="part_stock"
                     id="part_stock"
@@ -104,12 +107,12 @@ function AddPart() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="add-part__input-label-container">
-                  <label className="add-part__label" htmlFor="part_name">
+                <div className="edit-part__input-label-container">
+                  <label className="edit-part__label" htmlFor="part_name">
                     Part Name:
                   </label>
                   <input
-                    className="add-part__input"
+                    className="edit-part__input"
                     type="text"
                     name="part_name"
                     id="part_name"
@@ -119,13 +122,13 @@ function AddPart() {
                   />
                 </div>
               </div>
-              <div className="add-part__two-input-block">
-                <div className="add-part__input-label-container">
-                  <label className="add-part__label" htmlFor="price">
+              <div className="edit-part__two-input-block">
+                <div className="edit-part__input-label-container">
+                  <label className="edit-part__label" htmlFor="price">
                     Price:
                   </label>
                   <input
-                    className="add-part__input"
+                    className="edit-part__input"
                     type="text"
                     name="price"
                     id="price"
@@ -134,12 +137,12 @@ function AddPart() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="add-part__input-label-container">
-                  <label className="add-part__label" htmlFor="number_of_pieces">
+                <div className="edit-part__input-label-container">
+                  <label className="edit-part__label" htmlFor="number_of_pieces">
                     # Of Pieces:
                   </label>
                   <input
-                    className="add-part__input"
+                    className="edit-part__input"
                     type="text"
                     name="number_of_pieces"
                     id="number_of_pieces"
@@ -149,13 +152,13 @@ function AddPart() {
                   />
                 </div>
               </div>
-              <div className="add-part__two-input-block">
-                <div className="add-part__input-label-container add-part__input-label-container--odd">
-                  <label className="add-part__label" htmlFor="car_stock">
+              <div className="edit-part__two-input-block">
+                <div className="edit-part__input-label-container edit-part__input-label-container--odd">
+                  <label className="edit-part__label" htmlFor="car_stock">
                     Car Stock #:
                   </label>
                   <input
-                    className="add-part__input"
+                    className="edit-part__input"
                     type="text"
                     name="car_stock"
                     id="car_stock"
@@ -166,12 +169,12 @@ function AddPart() {
                 </div>
               </div>
             </div>
-            <div className="add-part__btn-container">
-              <button className="add-part__btn add-part__btn--cta btn btn--cta">
-                + add part
+            <div className="edit-part__btn-container">
+              <button className="edit-part__btn edit-part__btn--cta btn btn--cta">
+                + edit part
               </button>
               <button
-                className="add-part__btn add-part__btn--cancel btn btn--cancel"
+                className="edit-part__btn edit-part__btn--cancel btn btn--cancel"
                 onClick={handleCancelBtn}
               >
                 Cancel
@@ -181,7 +184,7 @@ function AddPart() {
         </div>
       </section>
     </>
-  );
+  )
 }
 
-export default AddPart;
+export default EditPart;

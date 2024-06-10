@@ -11,6 +11,7 @@ import PartDetails from './components/PartDetails/PartDetails';
 import AddVehicle from './components/AddVehicle/AddVehicle';
 import AddPart from './components/AddPart/AddPart';
 import EditVehicle from './components/EditVehicle/EditVehicle';
+import EditPart from './components/EditPart/EditPart';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <Route path='/parts' element={<PartsList />}></Route>
           <Route path='/parts/add' element={<AddPart />}></Route>
           <Route path='/parts/:id' element={<PartDetails />}></Route>
-          {/* <Route path='/parts/:id/edit' element={<EditPart />}></Route> */}
+          <Route path='/parts/:id/edit' element={<EditPart />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
