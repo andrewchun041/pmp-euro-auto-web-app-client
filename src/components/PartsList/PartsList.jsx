@@ -2,6 +2,7 @@ import './PartsList.scss';
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 import VehiclePartCard from '../VehiclePartCard/VehiclePartCard';
 
@@ -21,6 +22,14 @@ function PartsList() {
     const [ partsList, setPartsList ] = useState([]);
     const [ selectedPart, setSelectedPart ] = useState("all-parts");
 
+    /* -------------------------------------------------------------------------- */
+    /*                                 Navigation                                 */
+    /* -------------------------------------------------------------------------- */
+    const Navigate = useNavigate();
+    const handleAddBtnClick = () => {
+        Navigate("/parts/add");
+    }
+    
     /* -------------------------------------------------------------------------- */
     /*                       Get parts data from server api                       */
     /* -------------------------------------------------------------------------- */
@@ -104,6 +113,13 @@ function PartsList() {
             <div className="parts-hero-banner__background">
                 <div className="parts-hero-banner__text-container">
                     <h1 className="parts-hero-banner__title">Parts</h1>
+                </div>
+            </div>
+        </section>
+        <section className="parts-crud">
+            <div className="parts-crud__container">
+                <div className="parts-crud__btn-container">
+                    <button className="parts-crud__btn btn btn--cta" onClick={handleAddBtnClick}>+ add part</button>
                 </div>
             </div>
         </section>
