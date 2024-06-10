@@ -9,6 +9,15 @@ const baseUrl = "http://localhost:8080";
 function AddVehicle() {
     const Navigate = useNavigate();
 
+    const dataToSendInitial = {
+        car_stock: "",
+        year: "",
+        make: "",
+        model: "",
+        mileage_kms: "",
+        mileage_miles: "",
+        vin: "",
+    }
     const formInitial = {
         car_stock: "",
         year: "",
@@ -29,11 +38,21 @@ function AddVehicle() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        let dataToSend = { 
+            ...dataToSendInitial,
+            car_stock: form.car_stock,
+            year: parseInt(form.year),
+            make: form.make,
+            model: form.model,
+            mileage_kms: parseInt(form.mileage_kms),
+            mileage_miles: parseInt(form.mileage_miles),
+            vin: form.vin,
+        };
+
         try {
-            const response = await axios.post(`${baseUrl}/cars`, form);
+            const response = await axios.post(`${baseUrl}/cars`, dataToSend);
             if (response.status === 201) {
                 alert("Vehicle added successfully");
-                setForm(formInitial);
 
                 // TO ADD NAVIGATE TO NEWLY ADDED VEHICLE IN THE FUTURE
                 Navigate("/vehicles");

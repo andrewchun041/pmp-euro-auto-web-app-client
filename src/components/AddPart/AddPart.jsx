@@ -25,7 +25,6 @@ function AddPart() {
         car_id: "",
     }
     const [ form, setForm ] = useState(formInitial);
-    // const [ dataToSend, setDataToSend ] = useState(dataToSendInitial);
 
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -40,7 +39,7 @@ function AddPart() {
         /* -------------------------------------------------------------------------- */
         /*           Server API call to find id of car with input car stock           */
         /* -------------------------------------------------------------------------- */
-        let updatedForm = { 
+        let dataToSend = { 
             ...dataToSendInitial,
             part_stock: parseInt(form.part_stock),
             part_name: form.part_name,
@@ -52,7 +51,7 @@ function AddPart() {
             const currentCars = response.data;
             const foundCar = currentCars.find((car) => car.car_stock === form.car_stock);
             if (foundCar) {
-                updatedForm.car_id = foundCar.id;
+                dataToSend.car_id = foundCar.id;
             } else {
                 alert("Car with the provided Car Stock # does not exist.")
                 return
@@ -61,13 +60,12 @@ function AddPart() {
             console.error("Failed to retrieve cars data: ", error);
             alert("An error occurred while retrieving car data.");
             return;
-        } console.log(updatedForm);
+        } console.log(dataToSend);
 
         try {
-            const response = await axios.post(`${baseUrl}/car-parts`, updatedForm);
+            const response = await axios.post(`${baseUrl}/car-parts`, dataToSend);
             if (response.status === 201) {
                 alert("Part added successfully");
-                setForm(formInitial);
 
                 // TO ADD NAVIGATE TO NEWLY ADDED PART IN THE FUTURE
                 Navigate("/parts");
