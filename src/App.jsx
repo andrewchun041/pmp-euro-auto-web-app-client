@@ -10,6 +10,7 @@ import PartsList from './components/PartsList/PartsList';
 import PartDetails from './components/PartDetails/PartDetails';
 import AddVehicle from './components/AddVehicle/AddVehicle';
 import AddPart from './components/AddPart/AddPart';
+import EditVehicle from './components/EditVehicle/EditVehicle';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path='/vehicles' element={<VehiclesList />}></Route>
           <Route path='/vehicles/add' element={<AddVehicle />}></Route>
           <Route path='/vehicles/:id' element={<VehicleDetails />}></Route>
-          {/* <Route path='/vehicles/:id/edit' element={<EditVehicle />}></Route> */}
+          <Route path='/vehicles/:id/edit' element={<EditVehicle />}></Route>
           <Route path='/parts' element={<PartsList />}></Route>
           <Route path='/parts/add' element={<AddPart />}></Route>
           <Route path='/parts/:id' element={<PartDetails />}></Route>
