@@ -9,7 +9,7 @@ const baseUrl = "http://localhost:8080";
 function AddVehicle() {
     const Navigate = useNavigate();
 
-    const [ form, setForm ] = useState({
+    const formInitial = {
         car_stock: "",
         year: "",
         make: "",
@@ -17,19 +17,33 @@ function AddVehicle() {
         mileage_kms: "",
         mileage_miles: "",
         vin: "",
-    });
+    }
+    const [ form, setForm ] = useState(formInitial);
 
     const handleChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
     };
 
+    // TO ADD FORM VALIDATION IN THE FUTURE
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // try {
-        //     const response = await axios.post(`${baseUrl}/cars`, form);
-        //     if (response.status === )
-        // }
+        try {
+            const response = await axios.post(`${baseUrl}/cars`, form);
+            if (response.status === 201) {
+                alert("Vehicle added successfully");
+                setForm(formInitial);
+
+                // TO ADD NAVIGATE TO NEWLY ADDED VEHICLE IN THE FUTURE
+                Navigate("/vehicles");
+            } else {
+                alert("Failed to add vehicle")
+            }
+        } catch (error) {
+            console.error("Error posting vehicle: ", error);
+            alert("An unexpected error occurred")
+        }
     }
 
     const handleCancelBtn = () => {
